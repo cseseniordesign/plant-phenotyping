@@ -1,8 +1,10 @@
 # plant-phenotyping
 HCC Senior Design Repository
 
-Developers: Phillip Nguyen
-Developers: Zhenghui Su
-Developers: Collin Cornman 
-Developers: Yifeng Yu
-Developers: Yinchao He
+
+
+Developer: Phillip Nguyen
+Developer: Zhenghui Su
+Developer: Collin Cornman 
+Developer: Yifeng Yu
+Product Manager/Developer: Yinchao He
