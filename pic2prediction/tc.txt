@@ -1,0 +1,6 @@
+tr python3 {
+    site local {
+#        pfn "/home/csesd/johnsuzh/.conda/envs/mynumpy/bin/python3"
+        pfn "file:///work/csesd/johnsuzh/pic2prediction/scripts/run_python.sh"
+    }
+}

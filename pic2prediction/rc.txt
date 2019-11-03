@@ -1,0 +1,3 @@
+# file-based replica catalog: 2019-10-31T16:34:17.138-05:00
+model_4_300_3.40421104694053e-05.h5 file:///work/csesd/johnsuzh/pic2prediction/input/model_4_300_3.40421104694053e-05.h5 site="local"
+test.npy file:///work/csesd/johnsuzh/pic2prediction/output/test.npy site="local"
