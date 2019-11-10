@@ -1,0 +1,6 @@
+tr python3 {
+    site local-hcc {
+        pfn "/work/csesd/johnsuzh/pics2predictions/scripts/run_python.sh"
+    }
+}
+

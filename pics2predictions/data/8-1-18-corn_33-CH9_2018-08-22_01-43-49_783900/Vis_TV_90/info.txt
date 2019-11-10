@@ -1,0 +1,3 @@
+Camera label: Vis_TV_90
+MM pro pixel X: 0.581571578979492
+MM pro pixel Y: 0.581571578979492
