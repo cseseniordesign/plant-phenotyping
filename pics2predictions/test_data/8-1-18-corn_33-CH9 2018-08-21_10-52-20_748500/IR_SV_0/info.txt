@@ -1,0 +1,3 @@
+Camera label: IR_SV_0
+MM pro pixel X: 5.37020111083984
+MM pro pixel Y: 5.9750862121582

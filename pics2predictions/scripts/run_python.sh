@@ -5,9 +5,9 @@ export -f module
 module use /util/opt/hcc-modules/Common/
 
 module load anaconda
-conda activate mynumpy
+conda activate /home/csesd/pnnguyen/.conda/envs/sd
 
-export PYTHONPATH=/work/csesd/johnsuzh/pics2predictions:$PYTHONPATH
+export PYTHONPATH=/work/csesd/pnnguyen/run:$PYTHONPATH
 python3 "$@"
 
 conda deactivate
