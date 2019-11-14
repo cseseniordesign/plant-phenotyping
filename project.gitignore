@@ -116,5 +116,7 @@ rc.txt
 submit/
 *.dax
 scratch/
+file_paths_config.py
+run_python.sh
 
 
