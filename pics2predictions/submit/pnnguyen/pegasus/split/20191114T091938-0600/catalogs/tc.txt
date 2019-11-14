@@ -1,6 +1,0 @@
-tr python3 {
-    site local-hcc {
-       	pfn "file://${PWD}/scripts/run_python.sh"
-    }
-}
-
