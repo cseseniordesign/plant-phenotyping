@@ -112,11 +112,11 @@ tmp/
 *.gcno
 
 # Workflow
-rc.txt
-submit/
-*.dax
-scratch/
-file_paths_config.py
-run_python.sh
+pics2predictions/rc.txt
+pics2predictions/submit/
+pics2predictions/*.dax
+pics2predictions/scratch/
+pics2predictions/file_paths_config.py
+pics2predictions/run_python.sh
 
 
