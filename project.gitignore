@@ -111,3 +111,10 @@ tmp/
 *.swp
 *.gcno
 
+# Workflow
+rc.txt
+submit/
+*.dax
+scratch/
+
+
