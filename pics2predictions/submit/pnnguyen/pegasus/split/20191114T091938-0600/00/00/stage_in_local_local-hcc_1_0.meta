@@ -1,0 +1,14 @@
+[
+  {
+    "_type": "file", 
+    "_id": "model_4_300_3.40421104694053e-05.h5", 
+    "_attributes": {
+      "ctime": "2019-11-14T15:09:08", 
+      "checksum.timing": "0.092", 
+      "user": "pnnguyen", 
+      "checksum.type": "sha256", 
+      "checksum.value": "9aebbbd2a36034ee85ef54586f14d252c806b10a997997f361f600d3050a0e5b", 
+      "size": "2795848"
+    }
+  }
+]

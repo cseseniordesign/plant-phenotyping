@@ -1,0 +1,289 @@
+000 (10796860.000.000) 11/14 09:19:49 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: create_dir_split_0_local-hcc
+    pool:local
+...
+001 (10796860.000.000) 11/14 09:19:58 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415739_e0ad_1444518>
+...
+005 (10796860.000.000) 11/14 09:20:01 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796860.000.000) 11/14 09:20:04 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: create_dir_split_0_local-hcc
+...
+000 (10796861.000.000) 11/14 09:20:15 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: stage_in_local_local-hcc_1_0
+    pool:local
+...
+001 (10796861.000.000) 11/14 09:20:16 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415739_e0ad_1444524>
+...
+000 (10796862.000.000) 11/14 09:20:16 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000003
+    pool:local-hcc
+...
+000 (10796863.000.000) 11/14 09:20:16 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000005
+    pool:local-hcc
+...
+000 (10796864.000.000) 11/14 09:20:16 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000007
+    pool:local-hcc
+...
+000 (10796865.000.000) 11/14 09:20:16 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000001
+    pool:local-hcc
+...
+005 (10796861.000.000) 11/14 09:20:20 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796861.000.000) 11/14 09:20:21 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: stage_in_local_local-hcc_1_0
+...
+027 (10796863.000.000) 11/14 09:20:37 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796863.0#1573744816 slurm/20191114/23436273
+...
+027 (10796862.000.000) 11/14 09:20:37 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796862.0#1573744816 slurm/20191114/23436274
+...
+027 (10796864.000.000) 11/14 09:20:38 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796864.0#1573744816 slurm/20191114/23436275
+...
+027 (10796865.000.000) 11/14 09:20:38 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796865.0#1573744816 slurm/20191114/23436276
+...
+005 (10796865.000.000) 11/14 09:22:43 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796865.000.000) 11/14 09:22:46 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000001
+...
+005 (10796863.000.000) 11/14 09:22:49 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+005 (10796864.000.000) 11/14 09:22:49 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+005 (10796862.000.000) 11/14 09:22:49 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796862.000.000) 11/14 09:22:52 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000003
+...
+016 (10796863.000.000) 11/14 09:22:52 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000005
+...
+016 (10796864.000.000) 11/14 09:22:52 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000007
+...
+000 (10796866.000.000) 11/14 09:22:56 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000002
+    pool:local-hcc
+...
+000 (10796867.000.000) 11/14 09:23:01 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000004
+    pool:local-hcc
+...
+000 (10796868.000.000) 11/14 09:23:01 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000006
+    pool:local-hcc
+...
+000 (10796869.000.000) 11/14 09:23:02 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: python3_ID0000008
+    pool:local-hcc
+...
+027 (10796866.000.000) 11/14 09:23:04 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796866.0#1573744976 slurm/20191114/23436280
+...
+027 (10796869.000.000) 11/14 09:23:16 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796869.0#1573744982 slurm/20191114/23436281
+...
+027 (10796868.000.000) 11/14 09:23:16 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796868.0#1573744981 slurm/20191114/23436282
+...
+027 (10796867.000.000) 11/14 09:23:16 Job submitted to grid resource
+    GridResource: batch slurm
+    GridJobId: batch slurm crane.unl.edu_9619_login.crane.hcc.unl.edu#10796867.0#1573744981 slurm/20191114/23436283
+...
+005 (10796866.000.000) 11/14 09:25:12 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796866.000.000) 11/14 09:25:12 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000002
+...
+005 (10796867.000.000) 11/14 09:25:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+005 (10796868.000.000) 11/14 09:25:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+005 (10796869.000.000) 11/14 09:25:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796869.000.000) 11/14 09:25:28 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000008
+...
+016 (10796867.000.000) 11/14 09:25:28 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000004
+...
+016 (10796868.000.000) 11/14 09:25:28 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: python3_ID0000006
+...
+000 (10796870.000.000) 11/14 09:25:37 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: stage_out_local_local-hcc_1_0
+    pool:local
+...
+001 (10796870.000.000) 11/14 09:25:38 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415739_e0ad_1444651>
+...
+005 (10796870.000.000) 11/14 09:25:43 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796870.000.000) 11/14 09:25:48 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: stage_out_local_local-hcc_1_0
+...
+000 (10796871.000.000) 11/14 09:25:58 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: cleanup_split_0_local-hcc
+    pool:local
+...
+001 (10796871.000.000) 11/14 09:25:59 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415739_e0ad_1444660>
+...
+000 (10796872.000.000) 11/14 09:25:59 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415452_e123_3>
+    DAG Node: register_local-hcc_1_0
+    pool:local
+...
+005 (10796871.000.000) 11/14 09:26:03 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+001 (10796872.000.000) 11/14 09:26:03 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619+[--1]-9619&noUDP&sock=3415739_e0ad_1444662>
+...
+016 (10796871.000.000) 11/14 09:26:05 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: cleanup_split_0_local-hcc
+...
+005 (10796872.000.000) 11/14 09:26:05 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+...
+016 (10796872.000.000) 11/14 09:26:09 POST Script terminated.
+	(1) Normal termination (return value 0)
+    DAG Node: register_local-hcc_1_0
+...

@@ -29,14 +29,16 @@ for path in path_list:
 	corn_folder_name = path.split('/')[paths.file_paths['data_index']]
 	corn_folder_name = corn_folder_name.replace(' ','_')
 	preprocess = Job("python3")
-	preprocess.addArguments("-m", "schnablelab.CNN.Preprocess","hyp2arr",path,corn_folder_name)
+	preprocess.addArguments("-m", "schnablelab.CNN.Preprocess","hyp2arr", path, corn_folder_name)
 	dax.addJob(preprocess)
 	nparr = File("%s.npy" % corn_folder_name)
 	preprocess.uses(nparr, link=Link.OUTPUT, transfer=False, register=False)
-	prediction = File("model_4_300_3.%s.prd.png" % corn_folder_name)
+	model = paths.file_paths['model']
+	model_str = model.split('.')[0]
+	prediction = File("%s.%s.prd.png" % (model_str, corn_folder_name))
 	predict = Job("python3")
-	model = File(paths.file_paths['model'])
-	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict",model,nparr)
+	model_file = File(model)
+	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, nparr)
 	predict.uses(model, link=Link.INPUT)
 	predict.uses(nparr, link=Link.INPUT)
 	predict.setStdout(prediction)

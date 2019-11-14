@@ -1,0 +1,27 @@
+user pnnguyen
+grid_dn null
+submit_hostname login.crane.hcc.unl.edu
+root_wf_uuid 89a6f84b-a72c-431e-ba3b-e419006256ad
+wf_uuid 89a6f84b-a72c-431e-ba3b-e419006256ad
+dax /lustre/work/csesd/pnnguyen/pics2predictions/l.dax
+dax_label split
+dax_index 0
+dax_version 3.6
+pegasus_wf_name split-0
+timestamp 20191114T091938-0600
+basedir /work/csesd/pnnguyen/pics2predictions/submit
+submit_dir /work/csesd/pnnguyen/pics2predictions/submit/pnnguyen/pegasus/split/20191114T091938-0600
+planner /usr/bin/pegasus-plan
+planner_version 4.9.2dev
+pegasus_build 20190807153651Z
+planner_arguments "--conf pegasus.properties --dax l.dax --dir /work/csesd/pnnguyen/pics2predictions/submit --input-dir /work/csesd/pnnguyen/pics2predictions/input --output-dir /work/csesd/pnnguyen/pics2predictions/output --cleanup leaf --force --sites local-hcc,local --output-site local --submit "
+jsd jobstate.log
+rundir 20191114T091938-0600
+bindir /usr/bin
+vogroup pegasus
+uses_pmc false
+properties pegasus.2675801803565994314.properties
+condor_log split-0.log
+dag split-0.dag
+type dag
+notify split-0.notify

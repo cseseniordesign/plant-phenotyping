@@ -1,0 +1,14 @@
+[
+  {
+    "_type": "file", 
+    "_id": "8-1-18-corn_33-CH9_2018-08-24_01-59-52_854000.npy", 
+    "_attributes": {
+      "ctime": "2019-11-14T09:21:00-06:00", 
+      "checksum.timing": "0.327", 
+      "user": "pnnguyen", 
+      "checksum.type": "sha256", 
+      "checksum.value": "73483011b45c104662af79ee9361dc19a8f5ca69a1d15f2669cb55c8d544870c", 
+      "size": "43623488"
+    }
+  }
+]

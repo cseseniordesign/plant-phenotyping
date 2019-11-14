@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invocation xmlns="http://pegasus.isi.edu/schema/invocation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pegasus.isi.edu/schema/invocation http://pegasus.isi.edu/schema/iv-2.3.xsd" version="2.3" start="2019-11-14T09:25:38.560-06:00" duration="4.643" transformation="pegasus::transfer" derivation="null" resource="local" wf-label="split" wf-stamp="2019-11-14T09:19:32-06:00" interface="em1.101" hostaddr="129.93.227.113" hostname="crane.unl.edu" pid="4058732" uid="6196" user="pnnguyen" gid="11728" group="csesd" umask="0022">
+  <mainjob start="2019-11-14T09:25:39.051-06:00" duration="4.153" pid="4058767">
+    <usage utime="0.121" stime="0.067" maxrss="11868" minflt="16149" majflt="0" nswap="0" inblock="0" outblock="112" msgsnd="0" msgrcv="0" nsignals="0" nvcsw="171" nivcsw="28"/>
+    <status raw="0"><regular exitcode="0"/></status>
+    <statcall error="0">
+      <file name="/usr/bin/pegasus-transfer">23212F7573722F62696E2F707974686F</file>
+      <statinfo mode="0100755" size="172173" inode="1072117" nlink="1" blksize="4096" blocks="344" mtime="2019-08-07T10:37:16-05:00" atime="2019-11-13T11:13:22-06:00" ctime="2019-08-07T13:14:24-05:00" uid="0" user="root" gid="0" group="root"/>
+    </statcall>
+    <argument-vector>
+      <arg nr="1">--threads</arg>
+      <arg nr="2">2</arg>
+    </argument-vector>
+  </mainjob>
+  <jobids condor="10796870.0"/>
+  <cwd>/var/lib/condor/spool/local_univ_execute/dir_4058618</cwd>
+  <usage utime="0.099" stime="0.391" maxrss="820" minflt="9724" majflt="0" nswap="0" inblock="0" outblock="0" msgsnd="0" msgrcv="0" nsignals="0" nvcsw="1" nivcsw="60"/>
+  <machine page-size="4096">
+    <stamp>2019-11-14T09:25:38.560-06:00</stamp>
+    <uname system="linux" nodename="login.crane.hcc.unl.edu" release="2.6.32-754.17.1.el6.x86_64" machine="x86_64">#1 SMP Tue Jul 2 08:51:06 CDT 2019</uname>
+    <linux>
+      <ram total="65804724" free="5472260" shared="0" buffer="459396"/>
+      <swap total="0" free="0"/>
+      <boot idle="123995607.650">2019-08-06T21:34:05.521-05:00</boot>
+      <cpu count="16" speed="2594" vendor="GenuineIntel">Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz</cpu>
+      <load min1="2.31" min5="1.50" min15="1.03"/>
+      <procs total="4557" running="4" sleeping="4477" waiting="1" stopped="71" zombie="2" vmsize="464971684" rss="29881960"/>
+      <task total="4842" running="4" sleeping="4764" waiting="1" stopped="71" zombie="2"/>
+    </linux>
+  </machine>
+  <statcall error="0" id="stdin">
+    <descriptor number="0"/>
+    <statinfo mode="010600" size="0" inode="759075630" nlink="1" blksize="4096" blocks="0" mtime="2019-11-14T09:25:38-06:00" atime="2019-11-14T09:25:38-06:00" ctime="2019-11-14T09:25:38-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+  </statcall>
+  <statcall error="0" id="stdout">
+    <temporary name="/var/lib/condor/spool/local_univ_execute/dir_4058618/ks.out.VYlP16" descriptor="3"/>
+    <statinfo mode="0100600" size="2236" inode="854" nlink="1" blksize="4096" blocks="8" mtime="2019-11-14T09:25:43-06:00" atime="2019-11-14T09:25:39-06:00" ctime="2019-11-14T09:25:43-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+    <data>2019-11-14 09:25:39,135    INFO:  Reading URL pairs from stdin
+2019-11-14 09:25:39,137    INFO:  4 transfers loaded
+2019-11-14 09:25:39,137    INFO:  PATH=/usr/bin:/usr/local/bin:/bin:/usr/bin:/bin:/usr/bin:/usr/local/bin:/opt/local/bin
+2019-11-14 09:25:39,137    INFO:  LD_LIBRARY_PATH=
+2019-11-14 09:25:39,189    INFO:  --------------------------------------------------------------------------------
+2019-11-14 09:25:39,189    INFO:  Starting transfers - attempt 1
+2019-11-14 09:25:41,197    INFO:  /bin/cp -f -R -L &apos;/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600/./model_4_300_3.8-1-18-corn_33-CH9_2018-08-21_10-52-20_748500.prd.png&apos; &apos;/work/csesd/pnnguyen/pics2predictions/output/model_4_300_3.8-1-18-corn_33-CH9_2018-08-21_10-52-20_748500.prd.png&apos;
+2019-11-14 09:25:41,220    INFO:  /bin/cp -f -R -L &apos;/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600/./model_4_300_3.8-1-18-corn_33-CH9_2018-08-22_01-43-49_783900.prd.png&apos; &apos;/work/csesd/pnnguyen/pics2predictions/output/model_4_300_3.8-1-18-corn_33-CH9_2018-08-22_01-43-49_783900.prd.png&apos;
+2019-11-14 09:25:41,241    INFO:  /bin/cp -f -R -L &apos;/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600/./model_4_300_3.8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400.prd.png&apos; &apos;/work/csesd/pnnguyen/pics2predictions/output/model_4_300_3.8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400.prd.png&apos;
+2019-11-14 09:25:41,262    INFO:  /bin/cp -f -R -L &apos;/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600/./model_4_300_3.8-1-18-corn_33-CH9_2018-08-24_01-59-52_854000.prd.png&apos; &apos;/work/csesd/pnnguyen/pics2predictions/output/model_4_300_3.8-1-18-corn_33-CH9_2018-08-24_01-59-52_854000.prd.png&apos;
+2019-11-14 09:25:43,195    INFO:  --------------------------------------------------------------------------------
+2019-11-14 09:25:43,195    INFO:  Stats: Total 4 transfers, 37.8 KB transferred in 4 seconds. Rate: 9.3 KB/s (74.5 Kb/s)
+2019-11-14 09:25:43,195    INFO:         Between sites local_hcc-&gt;local : 4 transfers, 37.8 KB transferred in 4 seconds. Rate: 9.3 KB/s (74.5 Kb/s)
+2019-11-14 09:25:43,195    INFO:  All transfers completed successfully.
+</data>
+  </statcall>
+  <statcall error="0" id="stderr">
+    <temporary name="/var/lib/condor/spool/local_univ_execute/dir_4058618/ks.err.DV3M30" descriptor="4"/>
+    <statinfo mode="0100600" size="0" inode="855" nlink="1" blksize="4096" blocks="0" mtime="2019-11-14T09:25:39-06:00" atime="2019-11-14T09:25:39-06:00" ctime="2019-11-14T09:25:39-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+  </statcall>
+  <statcall error="0" id="metadata">
+    <temporary name="/var/lib/condor/spool/local_univ_execute/dir_4058618/ks.meta.N4ZJ5U" descriptor="5"/>
+    <statinfo mode="0100600" size="0" inode="856" nlink="1" blksize="4096" blocks="0" mtime="2019-11-14T09:25:39-06:00" atime="2019-11-14T09:25:39-06:00" ctime="2019-11-14T09:25:39-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+  </statcall>
+</invocation>

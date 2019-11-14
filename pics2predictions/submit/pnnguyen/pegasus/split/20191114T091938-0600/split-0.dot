@@ -1,0 +1,39 @@
+digraph E {
+size="8.0,10.0"
+ratio=fill
+node [shape=ellipse]
+edge [arrowhead=normal, arrowsize=1.0]
+	"cleanup_split_0_local-hcc" [color=deepskyblue,style=filled,label="cleanup_split_0_local-hcc"]
+	"python3_ID0000001" [color=blueviolet,style=filled,label="python3_ID0000001"]
+	"python3_ID0000002" [color=blueviolet,style=filled,label="python3_ID0000002"]
+	"create_dir_split_0_local-hcc" [color=darkturquoise,style=filled,label="create_dir_split_0_local-hcc"]
+	"python3_ID0000003" [color=blueviolet,style=filled,label="python3_ID0000003"]
+	"python3_ID0000004" [color=blueviolet,style=filled,label="python3_ID0000004"]
+	"python3_ID0000005" [color=blueviolet,style=filled,label="python3_ID0000005"]
+	"python3_ID0000006" [color=blueviolet,style=filled,label="python3_ID0000006"]
+	"python3_ID0000007" [color=blueviolet,style=filled,label="python3_ID0000007"]
+	"python3_ID0000008" [color=blueviolet,style=filled,label="python3_ID0000008"]
+	"stage_out_local_local-hcc_1_0" [color=goldenrod,style=filled,label="stage_out_local_local-hcc_1_0"]
+	"stage_in_local_local-hcc_1_0" [color=gold,style=filled,label="stage_in_local_local-hcc_1_0"]
+	"register_local-hcc_1_0" [color=orange,style=filled,label="register_local-hcc_1_0"]
+
+	"python3_ID0000001" -> "python3_ID0000002"
+	"python3_ID0000002" -> "stage_out_local_local-hcc_1_0"
+	"create_dir_split_0_local-hcc" -> "python3_ID0000003"
+	"create_dir_split_0_local-hcc" -> "python3_ID0000005"
+	"create_dir_split_0_local-hcc" -> "python3_ID0000007"
+	"create_dir_split_0_local-hcc" -> "stage_in_local_local-hcc_1_0"
+	"create_dir_split_0_local-hcc" -> "python3_ID0000001"
+	"python3_ID0000003" -> "python3_ID0000004"
+	"python3_ID0000004" -> "stage_out_local_local-hcc_1_0"
+	"python3_ID0000005" -> "python3_ID0000006"
+	"python3_ID0000006" -> "stage_out_local_local-hcc_1_0"
+	"python3_ID0000007" -> "python3_ID0000008"
+	"python3_ID0000008" -> "stage_out_local_local-hcc_1_0"
+	"stage_out_local_local-hcc_1_0" -> "cleanup_split_0_local-hcc"
+	"stage_out_local_local-hcc_1_0" -> "register_local-hcc_1_0"
+	"stage_in_local_local-hcc_1_0" -> "python3_ID0000004"
+	"stage_in_local_local-hcc_1_0" -> "python3_ID0000006"
+	"stage_in_local_local-hcc_1_0" -> "python3_ID0000008"
+	"stage_in_local_local-hcc_1_0" -> "python3_ID0000002"
+}

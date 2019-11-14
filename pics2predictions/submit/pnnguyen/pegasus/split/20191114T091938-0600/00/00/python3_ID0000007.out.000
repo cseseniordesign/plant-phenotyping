@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invocation xmlns="http://pegasus.isi.edu/schema/invocation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pegasus.isi.edu/schema/invocation http://pegasus.isi.edu/schema/iv-2.3.xsd" version="2.3" start="2019-11-14T09:20:38.514-06:00" duration="16.810" transformation="python3" derivation="ID0000007" resource="local-hcc" wf-label="split" wf-stamp="2019-11-14T09:19:32-06:00" interface="em1" hostaddr="10.138.18.20" hostname="c1820.crane.hcc.unl.edu" pid="192977" uid="6196" user="pnnguyen" gid="11728" group="csesd" umask="0022">
+  <mainjob start="2019-11-14T09:20:38.592-06:00" duration="16.731" pid="192978">
+    <usage utime="6.735" stime="1.448" maxrss="205308" minflt="192437" majflt="1111" nswap="0" inblock="577976" outblock="85872" msgsnd="0" msgrcv="0" nsignals="0" nvcsw="30883" nivcsw="20117"/>
+    <status raw="0"><regular exitcode="0"/></status>
+    <statcall error="0">
+      <file name="/lustre/work/csesd/pnnguyen/pics2predictions/scripts/run_python.sh">23212F62696E2F626173680A0A2E202F</file>
+      <statinfo mode="0100755" size="266" inode="144124246380041032" nlink="1" blksize="4194304" blocks="8" mtime="2019-11-12T23:20:36-06:00" atime="2019-11-14T09:20:38-06:00" ctime="2019-11-14T09:19:27-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+    </statcall>
+    <argument-vector>
+      <arg nr="1">-m</arg>
+      <arg nr="2">schnablelab.CNN.Preprocess</arg>
+      <arg nr="3">hyp2arr</arg>
+      <arg nr="4">/work/csesd/pnnguyen/pics2predictions/test_data/8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400/Hyp_SV_90/</arg>
+      <arg nr="5">8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400</arg>
+    </argument-vector>
+  </mainjob>
+  <jobids condor="10796864.0" lrm="23436275" lrmtype="slurm"/>
+  <cwd>/lustre/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600</cwd>
+  <usage utime="0.015" stime="0.061" maxrss="808" minflt="2044" majflt="0" nswap="0" inblock="0" outblock="0" msgsnd="0" msgrcv="0" nsignals="0" nvcsw="27" nivcsw="15"/>
+  <machine page-size="4096">
+    <stamp>2019-11-14T09:20:38.514-06:00</stamp>
+    <uname system="linux" nodename="c1820.crane.hcc.unl.edu" release="2.6.32-754.17.1.el6.x86_64" machine="x86_64">#1 SMP Tue Jul 2 08:51:06 CDT 2019</uname>
+    <linux>
+      <ram total="65802324" free="50955804" shared="0" buffer="171812"/>
+      <swap total="0" free="0"/>
+      <boot idle="47326132.230">2019-08-06T21:44:33.445-05:00</boot>
+      <cpu count="16" speed="2594" vendor="GenuineIntel">Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz</cpu>
+      <load min1="13.99" min5="13.98" min15="13.93"/>
+      <procs total="811" running="15" sleeping="796" vmsize="25629452" rss="8474512"/>
+      <task total="900" running="15" sleeping="885"/>
+    </linux>
+  </machine>
+  <statcall error="0" id="final" lfn="8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400.npy">
+    <file name="/lustre/work/csesd/pnnguyen/pics2predictions/scratch/pnnguyen/pegasus/split/20191114T091938-0600/8-1-18-corn_33-CH9_2018-08-26_01-59-21_917400.npy">934E554D5059010076007B2764657363</file>
+    <statinfo mode="0100644" size="43623488" inode="144124154826726248" nlink="1" blksize="4194304" blocks="83976" mtime="2019-11-14T09:20:54-06:00" atime="2019-11-14T09:20:54-06:00" ctime="2019-11-14T09:20:54-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+    <checksum type="sha256" value="4763b301bd563c06031ccdcbd9660bf6b35c7c2a6d906f21a5639fb901921a92" timing="0.380"/>
+  </statcall>
+  <statcall error="0" id="stdin">
+    <file name="/dev/null"/>
+    <statinfo mode="020666" size="0" inode="5273" nlink="1" blksize="4096" blocks="0" mtime="2019-08-06T21:44:42-05:00" atime="2019-08-06T21:44:42-05:00" ctime="2019-08-06T21:44:42-05:00" uid="0" user="root" gid="0" group="root"/>
+  </statcall>
+  <statcall error="0" id="stdout">
+    <temporary name="/tmp/ks.out.X8P9SN" descriptor="3"/>
+    <statinfo mode="0100600" size="34" inode="806365206" nlink="1" blksize="4096" blocks="8" mtime="2019-11-14T09:20:54-06:00" atime="2019-11-14T09:20:38-06:00" ctime="2019-11-14T09:20:54-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+    <data>245 images found.
+(561, 320, 243)
+</data>
+  </statcall>
+  <statcall error="0" id="stderr">
+    <temporary name="/tmp/ks.err.kFza2M" descriptor="4"/>
+    <statinfo mode="0100600" size="0" inode="806365207" nlink="1" blksize="4096" blocks="0" mtime="2019-11-14T09:20:38-06:00" atime="2019-11-14T09:20:38-06:00" ctime="2019-11-14T09:20:38-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+  </statcall>
+  <statcall error="0" id="metadata">
+    <temporary name="/tmp/ks.meta.LbXfbM" descriptor="5"/>
+    <statinfo mode="0100600" size="0" inode="806365208" nlink="1" blksize="4096" blocks="0" mtime="2019-11-14T09:20:38-06:00" atime="2019-11-14T09:20:38-06:00" ctime="2019-11-14T09:20:38-06:00" uid="6196" user="pnnguyen" gid="11728" group="csesd"/>
+  </statcall>
+</invocation>
