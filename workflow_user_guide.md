@@ -13,14 +13,17 @@
 * numpy
 
 ## Cloning Project (Need to do only once)
-1. You can clone the project using: `git clone git@github.com:cseseniordesign/plant-phenotyping.git`
+1. You can clone the project using: `git clone https://github.com/cseseniordesign/plant-phenotyping.git`
+2. Run this command in the location you wish to clone the project to.
 
 ## Transferring Data to HCC Server (Need to do only once)
-2. This workflow can only be run on the HCC server, so move the whole project (plant-phenotyping) into your work directory on the HCC server. Transferring data instructions below:
-Mac/Linux (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/quickstarts/connecting/for_maclinux_users/>
-Window (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/quickstarts/connecting/for_windows_users/>
-3. Ensure that the schnablelab project (<https://github.com/freemao/schnablelab>) is on in the HCC server and is accessible by you.
-4. Ensure that the plant dataset is on the HCC server and is accessible by you.
+1. This workflow can only be run on the HCC server, so ensure the entire project (plant-phenotyping) is in your work directory on the HCC server. 
+2. Ensure that the schnablelab project (<https://github.com/freemao/schnablelab>) is on in the HCC server and is accessible by you.
+    1. Run this command, `git clone https://github.com/freemao/schnablelab.git`, in the desired location to add the HCC server.
+3. Ensure that the plant dataset is on the HCC server and is accessible by you.
+    * Data transfer instructions are below for moving local information to the HCC servers:
+        * Mac/Linux (under File Transferring With HCC Supercomputers):<https://hcc.unl.edu/docs/quickstarts/connecting/for_maclinux_users/>
+        * Windows (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/quickstarts/connecting/for_windows_users/>
 
 ## Creating Anaconda Environment to Run Workflow (Need to do only once)
 1. Install dependencies: [pandas, matplotlib, scipy(version 1.1.0), scikit-learn, pillow, opencv, tensorflow, keras, and numpy]
