@@ -48,10 +48,13 @@
             * ....
     * Note: There must be just plant folders in the data folder and each plant folder must contain a Hyp\_SV\_90 folder.
 
-2. Modify run_python.sh located in pics2predictions’ scripts folder: Change conda activate numpy to `conda activate [path to environment]` (where [path to environment] is the path of the environment you created). Most anaconda paths on the HCC server are either located in $HOME or $WORK. You can check by by typing the command `ls -a` on the command line in either directories and checking if a .conda folder is in the directory. The actual path to your enviroment is of the following pattern. $HOME/.conda/envs/[name of environment] or $WORK/.conda/envs/[name of environment]. ex:
+2. Modify run_python.sh located in scripts folder in the pics2predictions folder:
+    1. Change conda activate numpy to `conda activate [path to environment]` (where [path to environment] is the path of the environment you created). 
+        * Most anaconda paths on the HCC server are either located in $HOME or $WORK. You can check by by typing the command `ls -a` on the command line in either directories and checking if a .conda folder is in the directory. 
+       * The actual path to your enviroment is of the following pattern. $HOME/.conda/envs/[name of environment] or $WORK/.conda/envs/[name of environment]. ex:
     `conda activate /home/csesd/pnnguyen/.conda/envs/sd`
 
-3. Modify run_python.sh located in pics2predictions’ scripts folder: Change the python path (content after export PYTHONPATH=) to the path to the schnablelab project. ex: (Note schnablelab folder is in pics2predictions in this example)
+    2. Change the python path (content after export PYTHONPATH=) to the path to the schnablelab project. ex: (Note schnablelab folder is in pics2predictions in this example)
 `export PYTHONPATH=/work/csesd/pnnguyen/pics2predictions:$PYTHONPATH`
 
 ## Changing Shell Scripts to Executables (Need to do only once)
