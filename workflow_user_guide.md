@@ -34,7 +34,10 @@
     5. Install dependencies [pandas, matplotlib, scikit-learn, pillow, opencv, tensorflow, keras, numpy, scipy(version 1.1.0)]: `conda install [package_name]` (must have your environment activated to use this line)
 
 ## Modifying Workflow Paths to Work with File Structure (Need to do only once)
-1. Modify file\_paths\_config.py located in the pics2predictions folder: Change the data value to the file path to the dataset’s Hyp\_SV\_90 folders. Change the model value to the value of the model you want use to predict the images (also ensure that the file is in the input folder). Change the data\_index value to the index the plant folder would be at when splitted by /. ex:
+1. Modify file\_paths\_config.py located in the pics2predictions folder: 
+    * Change the data value to the file path to the dataset’s Hyp\_SV\_90 folders. 
+    * Change the model value to the value of the model you want use to predict the images (also ensure that the file is in the input folder). 
+    * Change the data\_index value to the index the plant folder would be at when splitted by /. ex:
     ` 'data': '/work/csesd/pnnguyen/data/*/Hyp_SV_90/',`
      `'model': 'model_4_300_3.40421104694053e-05.h5'`,
      `'data_index': 5`
@@ -48,7 +51,7 @@
             * ....
     * Note: There must be just plant folders in the data folder and each plant folder must contain a Hyp\_SV\_90 folder.
 
-2. Modify run_python.sh located in scripts folder in the pics2predictions folder:
+2. Modify run_python.sh located in the pics2predictions folder:
     1. Change conda activate numpy to `conda activate [path to environment]` (where [path to environment] is the path of the environment you created). 
         * Most anaconda paths on the HCC server are either located in $HOME or $WORK. You can check by by typing the command `ls -a` on the command line in either directories and checking if a .conda folder is in the directory. 
        * The actual path to your enviroment is of the following pattern. $HOME/.conda/envs/[name of environment] or $WORK/.conda/envs/[name of environment]. ex:
@@ -58,9 +61,10 @@
 `export PYTHONPATH=/work/csesd/pnnguyen/pics2predictions:$PYTHONPATH`
 
 ## Changing Shell Scripts to Executables (Need to do only once)
-1. Run the command: `chmod +x generate_dax.sh` to make generate_dax.sh an executable.
-2. Run the command: `chmod +x plan_dax.sh` to make plan_dax.sh an executable.
-3. Run the command: `chmod +x run_python.sh` to make run_python.sh an executable.  
+1. We will need to change the permissions for our scripts in the pics2predictions folder so we need to run the following commands:
+    * `chmod +x generate_dax.sh` to make generate_dax.sh an executable.
+    * `chmod +x plan_dax.sh` to make plan_dax.sh an executable.
+    * `chmod +x run_python.sh` to make run_python.sh an executable.  
 
 ## Running Workflow
 1. Run the command:
