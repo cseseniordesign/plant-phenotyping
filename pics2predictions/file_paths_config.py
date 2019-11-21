@@ -11,9 +11,7 @@
 # Note: There must be just plant folders in the data folder and each plant folder must contain a Hyp_SV_90 folder.
 
 file_paths = {'data': '/work/csesd/pnnguyen/pics2predictions/test_data/*/Hyp_SV_90/',
-              'schnablelab': 'work/csesd/pnnguyen/schnablelab/',
-              'model': 'model_4_300_3.40421104694053e-05.h5',
-              'data_index': 6 # needs to be index where plant folder name is when data value is splitted on /
+              'model': 'model_4_300_3.40421104694053e-05.h5'
 }
 
 use_anonymous = True
