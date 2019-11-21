@@ -24,10 +24,11 @@ dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
 dax.metadata("created", time.ctime())
 
 path_list = glob(paths.file_paths['data']) 
+path_list_index = paths.file_paths['data'].split('/').index('*')
 
 for path in path_list:
 	joined_path = "\\\"%s\\\"" % path
-	corn_folder_name = path.split('/')[paths.file_paths['data_index']]
+	corn_folder_name = path.split('/')[path_list_index]
 	corn_folder_name = corn_folder_name.replace(' ','_')
 	preprocess = Job("python3")
 	preprocess.addArguments("-m", "schnablelab.CNN.Preprocess","hyp2arr", joined_path, corn_folder_name)
