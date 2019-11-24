@@ -30,6 +30,43 @@ def extract_stem(image):
 	cv2.imshow('res',res)
 	return res
 
+def extract_pot(image,height):
+	hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+	lower_yellow = np.array([11,43,46])
+	upper_yellow = np.array([26,255,255])
+	lower_purple = np.array([100,50,50])
+	upper_purple = np.array([200,200,200])
+	mask_yellow = cv2.inRange(hsv, lower_yellow, upper_yellow)
+	mask_yellow = cv2.erode(mask_yellow, None, iterations=1)
+	mask_yellow = cv2.dilate(mask_yellow, None, iterations=8)
+	mask_yellow = cv2.erode(mask_yellow, None, iterations=6)
+	mask_yellow = cv2.dilate(mask_yellow, None, iterations=4)
+	mask_yellow = cv2.erode(mask_yellow, None, iterations=5)
+
+
+	zeros = np.zeros(get_width(image))
+	# mask_yellow[height-40:height] = zeros
+	res_yellow = cv2.bitwise_and(image,image, mask = mask_yellow)
+	# cv2.imshow('res_yellow', res_yellow)
+
+	mask_purple = cv2.inRange(hsv, lower_purple, upper_purple)
+	
+	mask_purple = cv2.erode(mask_purple, None, iterations=1)
+	mask_purple = cv2.dilate(mask_purple, None, iterations=3)
+	mask_purple = cv2.erode(mask_purple, None, iterations=3)
+	res_purple =  cv2.bitwise_or(image, image, mask = mask_purple)
+	# cv2.imshow('res_purple', res_purple)
+
+	mask_all = cv2.add(mask_purple, mask_yellow)
+	mask_all[height-38:height] = zeros
+	mask_all[0:int(4/5*height)] = zeros
+	# mask_all = cv2.erode(mask_all, None, iterations=1)
+	res_all = cv2.bitwise_and(image,image, mask = mask_all)
+
+	cv2.imshow('res_all', res_all)
+
+	return res_all
+
 def extract_inflorescence(image):
 	# 定义紫色花蕾的颜色范围
 	# define the range of purple color
@@ -55,15 +92,16 @@ def output_result():
 def init(image):
 	# 设置一些需要改变的参数
 	# set arguments
-	ap = argparse.ArgumentParser()
-	ap.add_argument("-i", "--image", required=True,
-		help="path to the input image")
+	# ap = argparse.ArgumentParser()
+	# ap.add_argument("-i", "--image", required=True,
+	#	help="path to the input image")
 	# ap.add_argument("-w", "--width", type=float, required=True,
 	#	help="width of the left-most object in the image (in inches)")
-	args = vars(ap.parse_args())
+	
+	# args = vars(ap.parse_args())
 	# 读取输入图片
 	# read image
-	image = cv2.imread(args["image"])
+	image = cv2.imread('image8.png')
 	return image
 
 def draw_stem(res):
@@ -116,12 +154,12 @@ def draw_inflorescence(res):
 		# Sort the contour points according to the order of top-left, top-right, bottom-right and bottom-left, 
 		# and draw the BB of outer tangent, which is represented by green line
 		box = perspective.order_points(box)
-		cv2.drawContours(orig, [box.astype("int")], -1, (0, 255, 0), 2)
+		cv2.drawContours(orig, [box.astype("int")], -1, (0, 0, 255), 1)
 
 		# 绘制BB的4个顶点，用红色的小圆圈来表示
 		# Draw the four vertices of BB, represented by small red circles
 		for (x, y) in box:
-			cv2.circle(orig, (int(x), int(y)), 5, (0, 0, 255), -1)
+			cv2.circle(orig, (int(x), int(y)), 1, (0, 0, 255), -1)
 
 		# 分别计算top-left 和top-right的中心点和bottom-left 和bottom-right的中心点坐标
 		# Calculate the center point coordinates of top-left 
@@ -137,17 +175,17 @@ def draw_inflorescence(res):
 
 		# 绘制BB的4条边的中心点，用蓝色的小圆圈来表示
 		# Draw the center point of the four edges of BB, represented by a small blue circle
-		cv2.circle(orig, (int(tltrX), int(tltrY)), 5, (255, 0, 0), -1)
-		cv2.circle(orig, (int(blbrX), int(blbrY)), 5, (255, 0, 0), -1)
-		cv2.circle(orig, (int(tlblX), int(tlblY)), 5, (255, 0, 0), -1)
-		cv2.circle(orig, (int(trbrX), int(trbrY)), 5, (255, 0, 0), -1)
+		# cv2.circle(orig, (int(tltrX), int(tltrY)), 5, (255, 0, 0), -1)
+		# cv2.circle(orig, (int(blbrX), int(blbrY)), 5, (255, 0, 0), -1)
+		# cv2.circle(orig, (int(tlblX), int(tlblY)), 5, (255, 0, 0), -1)
+		# cv2.circle(orig, (int(trbrX), int(trbrY)), 5, (255, 0, 0), -1)
 
 		# 在中心点之间绘制直线，用紫红色的线来表示
 		# Draw a line between the center points, indicated by a magenta line
-		cv2.line(orig, (int(tltrX), int(tltrY)), (int(blbrX), int(blbrY)),
-			(255, 0, 255), 2)
-		cv2.line(orig, (int(tlblX), int(tlblY)), (int(trbrX), int(trbrY)),
-			(255, 0, 255), 2)
+		# cv2.line(orig, (int(tltrX), int(tltrY)), (int(blbrX), int(blbrY)),
+		# 	(255, 0, 255), 2)
+		# cv2.line(orig, (int(tlblX), int(tlblY)), (int(trbrX), int(trbrY)),
+		#	(255, 0, 255), 2)
 
 		# 计算两个中心点之间的欧氏距离，即图片距离
 		# Calculate the Euclidean distance between two center points, that is, the distance of the picture
@@ -187,11 +225,84 @@ def draw_all(inflorescence,stem):
 def output_result():
 	pass
 
+def get_height(image):
+	return image.shape[0]
+def get_width(image):
+	return image.shape[1]
+
+def get_lowest_height(image):
+	# height, width in image
+	height = image.shape[0]
+	# width = image.shape[1]
+	# print(height, width)
+	# cut the lower part to remove purple noise
+	lowest_height = int(4/5*height)
+	# print(lowest_height)
+	# cv2.line(image, (0,lowest_height), (width,lowest_height),(255, 0, 255), 2)
+	return lowest_height
+
+def zoom_ratio(actual_size, pixel_size):
+	return actual_size/pixel_size
+
+def draw_pot_d(res):
+	# 输入图片灰度化
+	# gray scale
+	gray = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
+
+	# 对灰度图片执行高斯滤波
+	# Gaussian filter
+	gray = cv2.GaussianBlur(gray, (7, 7), 0)
+
+	# 对滤波结果做边缘检测获取目标
+	# detect the edge
+	edged = cv2.Canny(gray, 50, 100)
+	# 使用膨胀和腐蚀操作进行闭合对象边缘之间的间隙
+	# close the gap between edges
+	edged = cv2.dilate(edged, None, iterations=1)
+	edged = cv2.erode(edged, None, iterations=1)
+
+	# 在边缘图像中寻找物体轮廓（即物体）
+	# find contour of the object
+	cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL,
+		cv2.CHAIN_APPROX_SIMPLE)
+	cnts = imutils.grab_contours(cnts)
+
+	# 对轮廓按照从左到右进行排序处理
+	# sort the contour from left to right
+	(cnts, _) = contours.sort_contours(cnts)
+	# initialize 'pixels per metric' 
+	pixelsPerMetric = None
+	
+	# 循环遍历每一个轮廓
+	# Loop through each contour
+	
+	orig = image.copy()
+	extLeft = tuple(cnts[0][cnts[0][:, :, 0].argmin()][0])
+	extRight = tuple(cnts[0][cnts[0][:, :, 0].argmax()][0])
+	print(extLeft)
+	print(extRight)
+	pot_width = extRight[0]-extLeft[0]
+	cv2.line(orig, (extLeft[0],extLeft[1]), (extRight[0],extLeft[1]),(0, 0, 255), 2)
+	cv2.putText(orig, "{:.1f}".format(pot_width),
+		(int(get_width(orig)/2), get_lowest_height(orig)), cv2.FONT_HERSHEY_SIMPLEX,
+		0.65, (0, 0, 0), 2)
+	
+	cv2.imshow("Image", orig)
+	cv2.waitKey(0)
+	return pot_width
+
 if __name__ == "__main__":
 	# py image_process.py --image image.png
 	image = np.zeros((1,1,1), np.uint8)
 	image = init(image) # read image
+	# get_lowest_height(image)
 	inflorescence = extract_inflorescence(image)
 	stem = extract_stem(image)
+	height = get_height(image)
+	pot = extract_pot(image, height)
+	pot_d = draw_pot_d(pot)
+	print(pot_d)
+	print(zoom_ratio(24,pot_d))
 	draw_all(inflorescence,stem)
+	cv2.waitKey(0)
 	output_result()
