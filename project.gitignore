@@ -119,4 +119,11 @@ pics2predictions/scratch/
 pics2predictions/file_paths_config.py
 pics2predictions/run_python.sh
 
+pics2predictions2/rc.txt
+pics2predictions2/submit/
+pics2predictions2/*.dax
+pics2predictions2/scratch/
+pics2predictions2/file_paths_config.py
+pics2predictions2/run_python.sh
+
 
