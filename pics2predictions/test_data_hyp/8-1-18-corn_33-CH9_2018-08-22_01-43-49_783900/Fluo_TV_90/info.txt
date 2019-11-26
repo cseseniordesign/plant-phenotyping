@@ -1,0 +1,3 @@
+Camera label: Fluo_TV_90
+MM pro pixel X: 0.575560808181763
+MM pro pixel Y: 0.543154120445251

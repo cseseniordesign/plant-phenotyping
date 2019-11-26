@@ -16,10 +16,10 @@
 
 
 # Note: There must be just plant folders in the data folder and each plant folder must contain a Hyp_SV_90 folder.
-# Example of data value for daxgen_hyp (Plant Folders in test_data): 'data': '/work/csesd/pnnguyen/pics2predictions/test_data/*/Hyp_SV_90/'
-# Example of data value for daxgen_npy: 'data' (.npy in test_data): '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions2/test_data/*'
+# Example of data value for daxgen_hyp (Plant Folders in test_data): 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/'
+# Example of data value for daxgen_npy (.npy in test_data): 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy/*'
 
-file_paths = {'data': '/work/csesd/pnnguyen/pics2predictions/test_data/*/Hyp_SV_90/',
+file_paths = {'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/',
               'model': 'model_4_300_3.40421104694053e-05.h5'
 }
 
