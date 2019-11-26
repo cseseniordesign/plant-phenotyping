@@ -34,14 +34,14 @@ def calculate_inflorescence_width_and_height(image):
     corp_threshold = int(560*(4/5))
     #print(a)
     mask[corp_threshold:560] = a
-    #cv2.imshow("mask", mask)
+    cv2.imshow("mask", mask)
     # noise reduction using erosion followed by dilation
     mask = cv2.erode(mask, None, iterations=2)
-    #cv2.imshow("mask1", mask)
+    cv2.imshow("mask1", mask)
     mask = cv2.dilate(mask, None, iterations=3)
-    #cv2.imshow("mask2", mask)
+    cv2.imshow("mask2", mask)
     res = cv2.bitwise_and(image, image, mask=mask)
-    #cv2.imshow("res", res)
+    cv2.imshow("res", res)
     # convert BGR to GRAY
     gray = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
     # blur the image slightly
@@ -133,13 +133,19 @@ def calculate_plant_height(image,top,zoom_level):
     # define range of orange color in HSV
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     hsv2 = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    hsv3 = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     lower_orange = np.array([11, 43, 46])
     upper_orange = np.array([26, 255, 255])
+    lower_purple = np.array([100, 50, 50])
+    upper_purple = np.array([200, 200, 200])
     lower_green = np.array([30, 200, 100])
     upper_green = np.array([100, 255, 190])
     mask = cv2.inRange(hsv, lower_orange, upper_orange)
     mask2 = cv2.inRange(hsv2, lower_green, upper_green)
-    cv2.imshow("q", mask2)
+    mask3 = cv2.inRange(hsv3, lower_purple, upper_purple)
+    res = cv2.add(mask, mask3)
+
+    cv2.imshow("res", res)
     a = np.zeros(320)
     stem_top = []
     stem_bottom = []
@@ -166,26 +172,31 @@ def calculate_plant_height(image,top,zoom_level):
             if j == 1:
                 break
         stem_bottom = [145,535]
+        orig = image.copy()
         plant_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
+        cv2.line(orig, (int(stem_top[0]), int(stem_top[1])), (int(stem_bottom[0]), int(stem_bottom[1])), (0, 0, 255), 2)
+        cv2.imshow("orig", orig)
         print(plant_height)
         cv2.waitKey(0)
         return plant_height
 
     else:
         kernel = np.ones((10, 1), np.uint8)  # 1, 13
-        #mask = cv2.erode(mask, None, iterations=1)
-        mask[0:100] = a
-        mask[493:560] = a
-        print(mask.shape)
-        #cv2.imshow("mask", mask)
-        mask = cv2.erode(mask, kernel, iterations=1)
-        #cv2.imshow("mask1", mask)
-        mask = cv2.dilate(mask, None, iterations=2)
         #cv2.imshow("mask2", mask)
+        res = cv2.erode(res, None, iterations=1)
+        res[0:100] = a
+        res[493:560] = a
+        print(res.shape)
+        cv2.imshow("res1", res)
+        res = cv2.erode(res, kernel, iterations=1)
+        cv2.imshow("res2", res)
+        kernel2 = np.ones((10, 1), np.uint8)
+        res = cv2.dilate(res, kernel2, iterations=2)
+        cv2.imshow("res2", res)
         j = 0
         for i in range(560):
             for k in range(320):
-                if mask[i][k] == 255:
+                if res[i][k] == 255:
                     stem_top = [k, i]
                     print(stem_top)
                     j = 1
@@ -193,12 +204,12 @@ def calculate_plant_height(image,top,zoom_level):
             if j == 1:
                 break
 
-        mask2[0:440] = a
+        mask2[0:445] = a
         kernel = np.ones((1, 10), np.uint8)
         mask2 = cv2.erode(mask2, kernel, iterations=1)
-        cv2.imshow("mask", mask2)
+        #cv2.imshow("mask", mask2)
         mask2 = cv2.dilate(mask2, kernel, iterations=2)
-        cv2.imshow("mask1", mask2)
+        #cv2.imshow("mask1", mask2)
         cnts = cv2.findContours(mask2.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
         (cnts, _) = contours.sort_contours(cnts)
@@ -217,7 +228,8 @@ def calculate_plant_height(image,top,zoom_level):
             midY = (tl[1]+bl[1])/2
             stem_bottom = [midX,midY]
             print(stem_bottom)
-
+            cv2.line(orig,(int(stem_top[0]),int(stem_top[1])), (int(stem_bottom[0]),int(stem_bottom[1])), (0, 0, 255), 2)
+            cv2.imshow("orig",orig)
             plant_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
             print(plant_height)
             cv2.waitKey(0)
@@ -264,6 +276,6 @@ def output_txt_file(inflorescence_width,inflorescence_height,plant_height):
 if __name__ == "__main__":
     image = init()
     #inflorescence_width, inflorescence_height, inflorescence_top = calculate_inflorescence_width_and_height(image)
-    plant_height = calculate_plant_height(image,1,15)#inflorescence_top
+    plant_height = calculate_plant_height(image,1,25)#inflorescence_top
     #print([inflorescence_width,inflorescence_height,plant_height])
     #output_txt_file(inflorescence_width,inflorescence_height,plant_height)
