@@ -18,10 +18,12 @@ def midpoint(A, B):
 # read plant_ID
 def init():
     ap = argparse.ArgumentParser()
+    ap.add_argument("-p", "--path", required=True, help="path of the folder")
     ap.add_argument("-i", "--identity", required=True, help="plant_ID")
     args = vars(ap.parse_args())
     plant_ID = args["identity"]
-    return plant_ID
+    folder_path = args["path"]
+    return plant_ID, folder_path
 
 
 def extract_pot(image):
@@ -458,8 +460,9 @@ if __name__ == "__main__":
     #output_txt_file(inflorescence_width,inflorescence_h
     # eight,plant_height)
     '''
-    pattern = "/Users/john/PycharmProjects/PP/test_glob/fold3_model_4_300_0."
-    plant_ID = init()
+    plant_ID,folder_path = init()
+    #print(folder_path)
+    pattern = folder_path+"/fold3_model_4_300_0."
     pattern = pattern+plant_ID+"*.png"
     l = glob(pattern)
     l_sorted=sorted(l)
@@ -467,7 +470,7 @@ if __name__ == "__main__":
     info_list = []
     for image_path in l_sorted:
         flag = 1
-        date=((image_path.split('/')[6]).split('_')[5]).split('.')[0]
+        date=((image_path.split('/')[-1]).split('_')[5]).split('.')[0]
         image = cv2.imread(image_path)
         pot = extract_pot(image)
         pot_width = calculate_pot_width(pot)
