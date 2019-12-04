@@ -470,7 +470,7 @@ if __name__ == "__main__":
     info_list = []
     for image_path in l_sorted:
         flag = 1
-        date=((image_path.split('/')[-1]).split('_')[5]).split('.')[0]
+        date=((image_path.split('/')[-1]).split('_')[-1]).split('.')[0]
         image = cv2.imread(image_path)
         pot = extract_pot(image)
         pot_width = calculate_pot_width(pot)
