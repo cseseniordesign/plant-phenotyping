@@ -69,7 +69,7 @@ for path in sorted(path_list):
 	if plant_name not in plant_ids:
 		plant_ids.add(plant_name)
 		measure = Job("python3")
-		measure.addArguments(plant_phenotyping_path + "/traits_extraction_updated.py", "-i", plant_name, "-p",output_dir)
+		measure.addArguments(plant_phenotyping_path + "/traits_extraction.py", "-i", plant_name, "-p",output_dir)
 		csv_name = "plant_traits_" + plant_name + ".csv"
 		csv = File(csv_name)
 		measure.uses(prediction, link=Link.INPUT)
