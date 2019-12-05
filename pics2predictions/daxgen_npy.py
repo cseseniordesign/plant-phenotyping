@@ -5,7 +5,7 @@ import pwd
 import sys
 import time
 import file_paths_config as paths
-from glob import glob 
+from glob import glob
 from Pegasus.DAX3 import *
 
 # The name of the DAX file is the first argument
@@ -23,31 +23,43 @@ dax = ADAG("split")
 dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
 dax.metadata("created", time.ctime())
 
-path_list = glob(paths.file_paths['data']) 
+plant_ids = set()
+path_list = glob(paths.file_paths['data'])
 path_list_index = paths.file_paths['data'].split('/').index('*')
+current_dir = os.getcwd()
+output_dir = current_dir + "/output"
+plant_phenotyping_index = current_dir.split('/').index('plant-phenotyping')
+plant_phenotyping_path = "/".join(current_dir.split('/')[:plant_phenotyping_index + 1])
 
-for path in path_list:
-	#joined_path = "\\\"%s\\\"" % path
-	corn_folder_name = path.split('/')[path_list_index]
-	#corn_folder_name = corn_folder_name.replace(' ','_')
-	#preprocess = Job("python3")
-	#preprocess.addArguments("-m", "schnablelab.CNN.Preprocess","hyp2arr", joined_path, corn_folder_name)
-	#dax.addJob(preprocess)
-	#nparr = File("%s.npy" % corn_folder_name)
-	#preprocess.uses(nparr, link=Link.OUTPUT, transfer=False, register=False)
+for path in sorted(path_list):
+	plant_folder_name = path.split('/')[path_list_index]
 	model = paths.file_paths['model']
 	model_str = model.split('.')[0]
-	numpy_name = corn_folder_name.split('.')[0]
+	numpy_name = plant_folder_name.split('.')[0]
+	plant_name = numpy_name.split('_')[0]
 	prediction = File("%s.%s.prd.png" % (model_str, numpy_name))
 	predict = Job("python3")
 	model_file = File(model)
 	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, path)
 	predict.uses(model, link=Link.INPUT)
-	#predict.uses(nparr, link=Link.INPUT)
 	predict.setStdout(prediction)
 	predict.uses(prediction, link=Link.OUTPUT, transfer=True, register=True)
 	dax.addJob(predict)
-	#dax.depends(predict, preprocess)
+	if plant_name not in plant_ids:
+		plant_ids.add(plant_name)
+		measure = Job("python3")
+		measure.addArguments(plant_phenotyping_path + "/traits_extraction_updated.py", "-i", plant_name, "-p",output_dir)
+		csv_name = "plant_traits_" + plant_name + ".csv"
+		csv = File(csv_name)
+		measure.uses(prediction, link=Link.INPUT)
+		measure.uses(csv, link=Link.OUTPUT, transfer=True, register=True)
+		measure.setStdout(csv)
+		dax.addJob(measure)
+		dax.depends(measure, predict)
+	else:
+		measure.uses(prediction, link=Link.INPUT)
+		dax.depends(measure, predict)
+
 
 f = open(daxfile, "w")
 dax.writeXML(f)
