@@ -20,7 +20,7 @@
 # Example of data value for daxgen_npy (.npy in test_data): 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy/*'
 
 file_paths = {'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/',
-              'model': 'model_4_300_3.40421104694053e-05.h5'
+              'model': 'fold3_model_4_300_0.0005.h5'
 }
 
 use_anonymous = True
