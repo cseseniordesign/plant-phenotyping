@@ -265,6 +265,7 @@ def calculate_stem_height(image,inflorescence_bottom_Y,inflorescence_bottom_X,zo
             # cv2.imshow("mask1", mask2)
             cnts = cv2.findContours(mask2.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             cnts = imutils.grab_contours(cnts)
+            print("cnt: %s" % cnts)
             (cnts, _) = contours.sort_contours(cnts)
             stem_bottom_dic = {}
             for c in cnts:
@@ -461,11 +462,13 @@ if __name__ == "__main__":
     # eight,plant_height)
     '''
     plant_ID,folder_path = init()
+    print('Plant_id: %s , Path: %s' % (plant_ID, folder_path))
     #print(folder_path)
     pattern = folder_path+"/fold3_model_4_300_0."
     pattern = pattern+plant_ID+"*.png"
     l = glob(pattern)
     l_sorted=sorted(l)
+    print(l_sorted)
     #print(l_sorted)
     info_list = []
     for image_path in l_sorted:
