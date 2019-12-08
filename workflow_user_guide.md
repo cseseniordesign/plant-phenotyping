@@ -11,6 +11,7 @@
 * tensorflow
 * keras
 * numpy
+* imutils
 
 ## Cloning Project (Need to do only once)
 1. You can clone the project using: `git clone https://github.com/cseseniordesign/plant-phenotyping.git`
@@ -26,12 +27,12 @@
         * Windows (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/quickstarts/connecting/for_windows_users/>
 
 ## Creating Anaconda Environment to Run Workflow (Need to do only once)
-1. Install dependencies: [pandas, matplotlib, scipy(version 1.1.0), scikit-learn, pillow, opencv, tensorflow, keras, and numpy]
+1. Install dependencies: [pandas, matplotlib, scipy(version 1.1.0), scikit-learn, pillow, opencv, tensorflow, keras, and numpy, imutils]
     1. Load anaconda: `module load anaconda`
     2. Create your own environment: `conda create -n [env_name]` (Where [env_name] is the name that you want your environment to be)
     3. To activate the environment: `conda activate [env_name]` (You can verify you have activated your environment by looking to the left username in the terminal. It should show your environment name in parentheses).
     4. To deactivate environment: `conda deactivate`
-    5. Install dependencies [pandas, matplotlib, scikit-learn, pillow, opencv, tensorflow, keras, numpy, scipy(version 1.1.0)]: `conda install [package_name]` (must have your environment activated to use this line)
+    5. Install dependencies [pandas, matplotlib, scikit-learn, pillow, opencv, tensorflow, keras, numpy, imutils, scipy(version 1.1.0)]: `conda install [package_name]` (must have your environment activated to use this line)
 
 ## Modifying Workflow Paths to Work with File Structure (Need to do only once)
 1. Modify file\_paths\_config.py located in the pics2predictions folder:
