@@ -32,6 +32,7 @@ plant_phenotyping_index = current_dir.split('/').index('plant-phenotyping')
 plant_phenotyping_path = "/".join(current_dir.split('/')[:plant_phenotyping_index + 1])
 plant_predict_jobs =  {}
 plant_extract_jobs = {}
+plant_predict_files =  {}
 
 for path in sorted(path_list):
 	plant_folder_name = path.split('/')[path_list_index]
@@ -50,7 +51,6 @@ for path in sorted(path_list):
 	if plant_name not in plant_ids:
 		plant_ids.add(plant_name)
 		measure = Job("python3")
-		measure.addArguments(plant_phenotyping_path + "/traits_extraction.py", "-i", plant_name, "-p",output_dir)
 		csv_name = "plant_traits_" + plant_name + ".csv"
 		csv = File(csv_name)
 		measure.uses(prediction, link=Link.INPUT)
@@ -58,17 +58,20 @@ for path in sorted(path_list):
 		measure.setStdout(csv)
 		plant_extract_jobs[plant_name] = measure
 		plant_predict_jobs[plant_name] = [predict]
+        plant_predict_files[plant_name] = [prediction]
 	else:
 		plant_predict_jobs[plant_name].append(predict)
+        plant_predict_files[plant_name].append(prediction)
 		measure.uses(prediction, link=Link.INPUT)
 
 #print(plant_extract_jobs)
-for extract_job in plant_extract_jobs:
-	job = plant_extract_jobs[extract_job]
+for plant_name in plant_extract_jobs:
+	job = plant_extract_jobs[plant_name]
+    measure.addArguments(plant_phenotyping_path + "/traits_extraction.py", "-i", plant_name, "-f", plant_predict_files[plant_name])
 	dax.addJob(job)
-	for predict_job in plant_predict_jobs[extract_job]:
+	for predict_job in plant_predict_jobs[plant_name]:
 		dax.depends(child=job, parent=predict_job)
-		
+
 
 f = open(daxfile, "w")
 dax.writeXML(f)
