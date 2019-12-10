@@ -50,7 +50,9 @@ def extract_pot(image):
 
     mask_all = cv2.add(mask_purple, mask_orange)
     mask_all[522:] = zeros
-    mask_all[0:int((4 / 5)*560)] = zeros
+    mask_all[0:int((4/5)*560)] = zeros
+
+    mask_all = cv2.erode(mask_all,None,iterations=2)
 
     res_all = cv2.bitwise_and(image, image, mask=mask_all)
     return res_all
@@ -75,15 +77,15 @@ def calculate_pot_width(res):
 
 def get_zoom_ratio(actual_size, pixel_size):
     if pixel_size == 0:
-        return 0.33
+        return 0.333
     else:
         zoom_ratio = actual_size / pixel_size
         if zoom_ratio < 0.14:
-            return 0.33
-        elif zoom_ratio > 0.4:
-            return 0.33
+            return 0.333
+        if zoom_ratio >= 0.14 and zoom_ratio <= 0.24:
+            return 0.182
         else:
-            return zoom_ratio
+            return 0.333
 
 
 def calculate_inflorescence_width_and_height(image,zoom_ratio):
