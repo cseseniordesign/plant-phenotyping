@@ -36,11 +36,14 @@
 
 ## Modifying Workflow Paths to Work with File Structure (Need to do only once)
 1. Modify file\_paths\_config.py located in the pics2predictions folder:
-    * Change the data value to the file path to the dataset’s Hyp\_SV\_90 folders.
+    * Change the data value to the file path to the dataset’s Hyp\_SV\_90 folders or the dataset's numpy files.
     * Change the model value to the value of the model you want use to predict the images (also ensure that the file is in the input folder).
-    * Example:
-    ` 'data': '/work/csesd/pnnguyen/data/*/Hyp_SV_90/',`
-     `'model': 'model_4_300_3.40421104694053e-05.h5'`
+    * Example (hyperspectral images):
+    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/',`
+    ` 'model': 'fold3_model_4_300_0.0005.h5'`
+    * Example (numpy arrays):
+    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy/*',`
+    ` 'model': 'fold3_model_4_300_0.0005.h5'`
     * data needs to be in this structure for workflow to work for hyperspectral images:
         * data (does not have to be called data)
             * [plant folder name]
@@ -94,4 +97,4 @@ This is to show the error message of the workflow if there was any error.
 7. When you want to run the workflow again, make sure to remove the contents in the output folder.
 
 ## Example of using this Workflow
-1. 
+1.
