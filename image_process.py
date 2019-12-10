@@ -45,7 +45,7 @@ def extract_pot(image, height):
 
     mask_all = cv2.add(mask_purple, mask_yellow)
     mask_all[height - 38:height] = zeros
-    mask_all[0:int(4 / 5 * height)] = zeros
+    mask_all[0:int(5 / 6 * height)] = zeros
 
     # mask_all = cv2.erode(mask_all, None, iterations=1)
 
@@ -297,8 +297,8 @@ def draw_pot_d(res):
         2,
         )
 
-    # cv2.imshow("Image", orig)
-    # cv2.waitKey(0)
+    cv2.imshow("Image", orig)
+    cv2.waitKey(0)
 
     return pot_width
 
@@ -442,7 +442,7 @@ if __name__ == '__main__':
 
     # image = init(image)
 
-    image = cv2.imread('image3.png')
+    image = cv2.imread('test1.png')
     flowered = True
 
     # get zoom ratio
