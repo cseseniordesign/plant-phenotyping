@@ -35,19 +35,43 @@ plant_extract_jobs = {}
 plant_predict_files = {}
 
 for path in sorted(path_list):
-	plant_folder_name = path.split('/')[path_list_index]
-	model = paths.file_paths['model']
-	model_str = model.split('.')[0]
-	numpy_name = plant_folder_name.split('.')[0]
-	plant_name = numpy_name.split('_')[0]
-	prediction = File("%s.%s.prd.png" % (model_str, numpy_name))
-	predict = Job("python3")
-	model_file = File(model)
-	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, path)
-	predict.uses(model, link=Link.INPUT)
-	predict.setStdout(prediction)
-	predict.uses(prediction, link=Link.OUTPUT, transfer=True, register=True)
-	dax.addJob(predict)
+    # If hyperspectral images...
+    if 'npy' != plant_folder_name.split('.')[-1]:
+        joined_path = "\\\"%s\\\"" % path
+    	corn_folder_name = path.split('/')[path_list_index]
+    	corn_folder_name = corn_folder_name.replace(' ','_')
+    	preprocess = Job("python3")
+    	preprocess.addArguments("-m", "schnablelab.CNN.Preprocess","hyp2arr", joined_path, corn_folder_name)
+    	dax.addJob(preprocess)
+    	nparr = File("%s.npy" % corn_folder_name)
+    	preprocess.uses(nparr, link=Link.OUTPUT, transfer=False, register=True)
+    	model = paths.file_paths['model']
+    	model_str = model.split('.')[0]
+    	prediction = File("%s.%s.prd.png" % (model_str, corn_folder_name))
+    	predict = Job("python3")
+    	model_file = File(model)
+        plant_name = corn_folder_name.split("_")[2]
+    	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, nparr)
+    	predict.uses(model, link=Link.INPUT)
+    	predict.uses(nparr, link=Link.INPUT)
+    	predict.setStdout(prediction)
+    	predict.uses(prediction, link=Link.OUTPUT, transfer=True, register=True)
+    	dax.addJob(predict)
+    	dax.depends(predict, preprocess)
+    else:
+    	plant_folder_name = path.split('/')[path_list_index]
+    	model = paths.file_paths['model']
+    	model_str = model.split('.')[0]
+    	numpy_name = plant_folder_name.split('.')[0]
+    	plant_name = numpy_name.split('_')[0]
+    	prediction = File("%s.%s.prd.png" % (model_str, numpy_name))
+    	predict = Job("python3")
+    	model_file = File(model)
+    	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, path)
+    	predict.uses(model, link=Link.INPUT)
+    	predict.setStdout(prediction)
+    	predict.uses(prediction, link=Link.OUTPUT, transfer=True, register=True)
+    	dax.addJob(predict)
 	if plant_name not in plant_ids:
 		plant_ids.add(plant_name)
 		measure = Job("python3")
