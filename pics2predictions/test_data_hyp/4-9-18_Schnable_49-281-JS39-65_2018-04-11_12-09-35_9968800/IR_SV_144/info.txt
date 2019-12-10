@@ -1,0 +1,3 @@
+Camera label: IR_SV_144
+MM pro pixel X: 0.568181812763214
+MM pro pixel Y: 0.591836810112
