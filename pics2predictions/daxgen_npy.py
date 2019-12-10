@@ -30,6 +30,9 @@ current_dir = os.getcwd()
 output_dir = current_dir + "/output"
 plant_phenotyping_index = current_dir.split('/').index('plant-phenotyping')
 plant_phenotyping_path = "/".join(current_dir.split('/')[:plant_phenotyping_index + 1])
+plant_predict_jobs =  {}
+plant_extract_jobs = {}
+plant_predict_files = {}
 
 for path in sorted(path_list):
 	plant_folder_name = path.split('/')[path_list_index]
@@ -48,17 +51,33 @@ for path in sorted(path_list):
 	if plant_name not in plant_ids:
 		plant_ids.add(plant_name)
 		measure = Job("python3")
-		measure.addArguments(plant_phenotyping_path + "/traits_extraction.py", "-i", plant_name, "-p",output_dir)
-		csv_name = "plant_traits_" + plant_name + ".csv"
-		csv = File(csv_name)
 		measure.uses(prediction, link=Link.INPUT)
-		measure.uses(csv, link=Link.OUTPUT, transfer=True, register=True)
-		measure.setStdout(csv)
-		dax.addJob(measure)
-		dax.depends(measure, predict)
+		plant_extract_jobs[plant_name] = measure
+		plant_predict_jobs[plant_name] = [predict]
+		plant_predict_files[plant_name] = [prediction]
 	else:
+		plant_predict_jobs[plant_name].append(predict)
+		plant_predict_files[plant_name].append(prediction)
 		measure.uses(prediction, link=Link.INPUT)
-		dax.depends(measure, predict)
+
+for plant_name in plant_extract_jobs:
+	job = plant_extract_jobs[plant_name]
+	csv_name = "plant_traits_" + plant_name + ".csv"
+	csv = File(csv_name)
+	job.uses(csv, link=Link.OUTPUT, transfer=True, register=True)
+	job.setStdout(csv)
+	job.addArguments(plant_phenotyping_path + "/traits_extraction.py", "-i", plant_name, "-f", *plant_predict_files[plant_name])
+	dax.addJob(job)
+	graphs_name = plant_name + "_growth_curve.png"
+	graphs = File(graphs_name)
+	visualize = Job("python3")
+	visualize.addArguments(plant_phenotyping_path + "/visualize.py", "-p", csv)
+	visualize.uses(csv, link=Link.INPUT)
+	visualize.uses(graphs, link=Link.OUTPUT, transfer=True, register=False)
+	dax.addJob(visualize)
+	dax.depends(child=visualize, parent=job)
+	for predict_job in plant_predict_jobs[plant_name]:
+		dax.depends(child=job, parent=predict_job)
 
 
 f = open(daxfile, "w")
