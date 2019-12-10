@@ -15,4 +15,4 @@ Developer: Collin Cornman
 Developer: Yifeng Yu
 
 Here is a workflow diagram:
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/Workflow%20Diagram.png)
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/Workflow%20Diagram.png)
