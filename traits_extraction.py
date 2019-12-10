@@ -63,20 +63,27 @@ def calculate_pot_width(res):
     edged = cv2.erode(edged, None, iterations=1)
     cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
-    (cnts, _) = contours.sort_contours(cnts)
-    extLeft = tuple(cnts[0][cnts[0][:, :, 0].argmin()][0])
-    extRight = tuple(cnts[0][cnts[0][:, :, 0].argmax()][0])
-    pot_width = extRight[0] - extLeft[0]
+    if len(cnts) == 0:
+        return -1
+    else:
+        (cnts, _) = contours.sort_contours(cnts)
+        extLeft = tuple(cnts[0][cnts[0][:, :, 0].argmin()][0])
+        extRight = tuple(cnts[0][cnts[0][:, :, 0].argmax()][0])
+        pot_width = extRight[0] - extLeft[0]
 
-    return pot_width
+        return pot_width
 
 def get_zoom_ratio(actual_size, pixel_size):
-    zoom_ratio = actual_size / pixel_size
-    if zoom_ratio > 0.4:
+    if pixel_size == 0:
         return 0.33
     else:
-        return zoom_ratio
-
+        zoom_ratio = actual_size / pixel_size
+        if zoom_ratio < 0.14:
+            return 0.33
+        elif zoom_ratio > 0.4:
+            return 0.33
+        else:
+            return zoom_ratio
 
 
 def calculate_inflorescence_width_and_height(image,zoom_ratio):
@@ -229,11 +236,14 @@ def calculate_stem_height(image,inflorescence_bottom_Y,inflorescence_bottom_X,zo
                 if j == 1:
                     break
             stem_bottom = [145, 535]
-            stem_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
-            stem_height = stem_height * zoom_ratio
-            #print(stem_height)
-            #cv2.waitKey(0)
-            return stem_height
+            if len(stem_top) == 0:
+                return 0
+            else:
+                stem_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
+                stem_height = stem_height * zoom_ratio
+                # print(stem_height)
+                # cv2.waitKey(0)
+                return stem_height
 
         else:
             kernel = np.ones((10, 1), np.uint8)  # 1, 13
@@ -290,13 +300,15 @@ def calculate_stem_height(image,inflorescence_bottom_Y,inflorescence_bottom_X,zo
             else:
                 lowest_bottom = max(stem_bottom_dic.keys())
                 stem_bottom = stem_bottom_dic[lowest_bottom]
-                # print(stem_bottom)
-                # cv2.imshow("orig", orig)
-                stem_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
-                stem_height = stem_height * zoom_ratio
-                # print(stem_height)
-                # cv2.waitKey(0)
-                return stem_height
+                if len(stem_top) == 0:
+                    return 0
+                    # cv2.imshow("orig", orig)
+                else:
+                    stem_height = dist.euclidean((stem_top[0], stem_top[1]), (stem_bottom[0], stem_bottom[1]))
+                    stem_height = stem_height * zoom_ratio
+                    # print(stem_height)
+                    # cv2.waitKey(0)
+                    return stem_height
 
     else:
         stem_top = [inflorescence_bottom_X, inflorescence_bottom_Y]
@@ -377,11 +389,14 @@ def calculate_plant_height(image, zoom_ratio):
 
     if zoom_ratio < 0.25:
         plant_bottom = [145, 535]
-        plant_height = plant_bottom[1]-plant_top[1]
-        plant_height = plant_height * zoom_ratio
-        #print(plant_height)
+        if len(plant_top) == 0:
+            return 0
+        else:
+            plant_height = plant_bottom[1] - plant_top[1]
+            plant_height = plant_height * zoom_ratio
+            # print(plant_height)
 
-        return plant_height
+            return plant_height
 
     else:
         mask2[0:445] = a
@@ -413,15 +428,18 @@ def calculate_plant_height(image, zoom_ratio):
         if len(plant_bottom_dic) == 0:
             return 0
         else:
-            lowest_bottom = max(plant_bottom_dic.keys())
-            plant_bottom = plant_bottom_dic[lowest_bottom]
-            # print(plant_bottom)
-            # print(plant_top)
-            plant_height = plant_bottom[1] - plant_top[1]
-            plant_height = plant_height * zoom_ratio
-            # print(plant_height)
-            # cv2.waitKey(0)
-            return plant_height
+            if len(plant_top) == 0:
+                return 0
+            else:
+                lowest_bottom = max(plant_bottom_dic.keys())
+                plant_bottom = plant_bottom_dic[lowest_bottom]
+                # print(plant_bottom)
+                # print(plant_top)
+                plant_height = plant_bottom[1] - plant_top[1]
+                plant_height = plant_height * zoom_ratio
+                # print(plant_height)
+                # cv2.waitKey(0)
+                return plant_height
 
 
 '''
@@ -483,7 +501,7 @@ if __name__ == "__main__":
     info_list = []
     if folder_path:
         pattern = folder_path+"/fold3_model_4_300_0."
-        pattern = pattern+plant_ID+"*.png"
+        pattern = pattern+plant_ID+"_"+"*.png"
         l = glob(pattern)
         l_sorted=sorted(l)
         #print(l_sorted)
@@ -495,13 +513,18 @@ if __name__ == "__main__":
         image = cv2.imread(image_path)
         pot = extract_pot(image)
         pot_width = calculate_pot_width(pot)
-        zoom_ratio = get_zoom_ratio(24, pot_width)
-        #print(zoom_ratio)
-        inflorescence_width, inflorescence_height, inflorescence_top, inflorescence_bottom_Y,inflorescence_bottom_X = calculate_inflorescence_width_and_height(image,zoom_ratio)
-        if inflorescence_height == 0 and inflorescence_width == 0:
-            flag = 0
-        stem_height = calculate_stem_height(image, inflorescence_bottom_Y, inflorescence_bottom_X, zoom_ratio, flag)
-        plant_height = calculate_plant_height(image, zoom_ratio)
+        if pot_width == -1:
+            inflorescence_width, inflorescence_height, stem_height, plant_height = 0, 0, 0, 0
+        else:
+            zoom_ratio = get_zoom_ratio(24, pot_width)
+            #print(zoom_ratio)
+            inflorescence_width, inflorescence_height, inflorescence_top, inflorescence_bottom_Y, inflorescence_bottom_X = calculate_inflorescence_width_and_height(
+                image, zoom_ratio)
+            if inflorescence_height == 0 and inflorescence_width == 0:
+                flag = 0
+            stem_height = calculate_stem_height(image, inflorescence_bottom_Y, inflorescence_bottom_X, zoom_ratio, flag)
+            plant_height = calculate_plant_height(image, zoom_ratio)
+
 
         info = {'plant_ID':plant_ID,'date':date,'inflorescence_width':inflorescence_width,'inflorescence_height':inflorescence_height,'stem_height':stem_height,'plant_height':plant_height}
         info_list.append(info)
