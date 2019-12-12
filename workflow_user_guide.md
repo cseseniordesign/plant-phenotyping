@@ -23,8 +23,8 @@
     1. Run this command, `git clone https://github.com/freemao/schnablelab.git`, in the desired location to add the HCC server.
 3. Ensure that the plant dataset is on the HCC server and is accessible by you.
     * Data transfer instructions are below for moving local information to the HCC servers:
-        * Mac/Linux (under File Transferring With HCC Supercomputers):<https://hcc.unl.edu/docs/quickstarts/connecting/for_maclinux_users/>
-        * Windows (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/quickstarts/connecting/for_windows_users/>
+        * Mac/Linux (under File Transferring With HCC Supercomputers):<https://hcc.unl.edu/docs/connecting/for_maclinux_users/>
+        * Windows (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/connecting/for_windows_users/>
 
 ## Creating Anaconda Environment to Run Workflow (Need to do only once)
 1. Install dependencies: [pandas, matplotlib, scikit-learn, pillow, opencv, tensorflow, keras, and numpy, imutils, scipy (version 1.1.0)]
@@ -97,4 +97,29 @@ This is to show the error message of the workflow if there was any error.
 7. When you want to run the workflow again, make sure to remove the contents in the output folder.
 
 ## Example of using this Workflow
-1.
+1. In this example, the plant-phenotyping and schnablelab repository are all on the HCC sever. Also, the anaconda environment has already been created with all of the dependencies of the project. Let us go step by step of using this workflow.
+2. We are currently in the workflow directory, pics2predictions, you can see all of the files of the workflow directory with `ls`
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/view_workflow_directory.png)
+3. Let us check the files that need to be configured to properly run the workflow. Here is the file_paths_config.py file that contains the paths to the dataset and the model that we want to use to predict the images. Here is shows the path to my test dataset and the model I want to use.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/file_paths_config.png)
+4. Let us now check run_python.sh. We see that PYTHONPATH is set to the directory that schnablelab is in. We se that it also activates my anaconda environment sd.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/run_python.png)
+5. We now need to convert all of the shell scripts into executables. We do this with `chmod +x [file name]` as shown below. The files are now in green after `ls`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/chmod.png)
+6. Now we can generate the dax with `./generate_dax [dax file name].dax` we use test.dax as a test. This now shows test.dax in the directory.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/generate_dax.png)
+7. We can use plan_dax.sh to plan the dax file and run the workflow. Let us run `./plan_dax [dax file name].dax`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/plan_dax.png)
+8. We can check the status with the line that was outputted from the plan dax command (`pegasus status -l ...`). The staging in jobs have just begun.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_start.png)
+9. After a few minutes with the test dataset, we can see that the workflow is done with (`pegasus status -l ...`).
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_done.png)
+10. Let us go into our output directory and check the output with `ls`. We can see it outputted several predict images, one measurement .csv, and one growth .png.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/output.png)
+11. Here is an example of a predicted image.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/predict.png)
+12. Here is an example of the measurement .csv.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/measure.png)
+13. Here is an example of the growth .png.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/growth.png)
+14. This concludes running the example of running this workflow.
