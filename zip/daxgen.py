@@ -30,11 +30,11 @@ for path in sorted(path_list):
 	plant_folder_name = path.split('/')[path_list_index]
 	preprocess = Job("zip")
 	zip_file_name = plant_folder_name + ".zip"
-	preprocess.addArguments("-r", zip_file_name, path_list)
-	dax.addJob(preprocess)
+	preprocess.addArguments("-r", zip_file_name, path)
 	zip_file = File(zip_file_name)
 	preprocess.uses(zip_file, link=Link.OUTPUT, transfer=True, register=True)
 	preprocess.setStdout(zip_file)
+	dax.addJob(preprocess)
 		
 
 
