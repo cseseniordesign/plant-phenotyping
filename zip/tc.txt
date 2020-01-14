@@ -1,0 +1,6 @@
+tr zip {
+    site local-hcc {
+       	pfn "/usr/bin/zip"
+    }
+}
+
