@@ -1,6 +1,13 @@
+#!/bin/bash
+
 tr zip {
-    site local-hcc {
+    site local {
        	pfn "/usr/bin/zip"
     }
 }
 
+tr cd {
+    site local {
+	pfn "cd"
+    }
+}
