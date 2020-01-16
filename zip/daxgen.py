@@ -26,7 +26,6 @@ dax.metadata("created", time.ctime())
 path_to_data = paths.file_paths['data'].replace('*','')
 path_list = glob(paths.file_paths['data'])
 path_list_index = paths.file_paths['data'].split('/').index('*')
-print(path_list)
 
 for path in sorted(path_list):
 	plant_folder_name = path.split('/')[path_list_index]
