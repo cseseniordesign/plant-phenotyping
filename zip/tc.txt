@@ -2,12 +2,6 @@
 
 tr zip {
     site local {
-       	pfn "/usr/bin/zip"
-    }
-}
-
-tr cd {
-    site local {
-	pfn "cd"
+       	pfn "file://${PWD}/preprocess.sh"
     }
 }
