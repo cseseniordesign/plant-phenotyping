@@ -54,21 +54,15 @@ This is to show the error message of the workflow if there was any error.
 7. When you want to run the workflow again, make sure to remove the contents in the output folder.
 
 ## Example of using this Workflow
-1. In this example, the plant-phenotyping and the dataset are all on the HCC sever. Let us go step by step of using this workflow.
-2. We are currently in the workflow directory, zip, you can see all of the files of the workflow directory with `ls`
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/view_workflow_directory.png)
+1. In this example, the plant-phenotyping and the dataset are all on the HCC sever. Let us go step by step of using this workflow. 
+2. We are currently in the workflow directory, zip, you can see all of the files of the workflow directory with `ls`. We now need to convert all of the shell scripts into executables. We do this with `chmod +x [file name]` as shown below. The files are now in green after `ls`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_chmod.png)
 3. Let us check the files that need to be configured to properly run the workflow. Here is the file_paths_config.py file that contains the paths to the dataset's plant folders. Here is shows the path to my test dataset.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/file_paths_config.png)
-4. We now need to convert all of the shell scripts into executables. We do this with `chmod +x [file name]` as shown below. The files are now in green after `ls`.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/chmod.png)
-5. Now we can generate the dax with `./generate_dax [dax file name].dax` we use test.dax as a test. This now shows test.dax in the directory.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/generate_dax.png)
-6. We can use plan_dax.sh to plan the dax file and run the workflow. Let us run `./plan_dax [dax file name].dax`.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/plan_dax.png)
-7. We can check the status with the line that was outputted from the plan dax command (`pegasus status -l ...`). The staging in jobs have just begun.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_start.png)
-8. After a few minutes with the test dataset, we can see that the workflow is done with (`pegasus status -l ...`).
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_done.png)
-9. Let us go into our output directory and check the output with `ls`. We can see it outputted several predict images, one measurement .csv, and one growth .png.
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/output.png)
-10. This concludes running the example of running this workflow.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_file_paths_config.png)
+4. Now we can generate the dax with `./generate_dax [dax file name].dax` we use test.dax as a test. This now shows test.dax in the directory. We can use plan_dax.sh to plan the dax file and run the workflow. Let us run `./plan_dax [dax file name].dax`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_plan_dax.png)
+5. We can check the status with the line that was outputted from the plan dax command (`pegasus status -l ...`). The staging in jobs have just begun.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_status_start.png)
+6. After a few minutes with the test dataset, we can see that the workflow is done with (`pegasus status -l ...`). Let us go into our output directory and check the output with `ls`. We can see it outputted several zip files, each one representing a folder in the dataset.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_output.png)
+7. This concludes running the example of running this workflow.
