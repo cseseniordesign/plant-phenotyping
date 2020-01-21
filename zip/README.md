@@ -1,12 +1,74 @@
-# pics2predictions Workflow
+# How to use Pegasus on HCC server
+# SD2019-Plant Phenotyping
+## Dependencies
+* pegasus (does not need to be installed)
 
-Generating a Workflow
----------------------
-Run the generate_dax.sh script.
+## Cloning Project (Need to do only once)
+1. You can clone the project using: `git clone https://github.com/cseseniordesign/plant-phenotyping.git`
+2. Run this command in the location you wish to clone the project to.
 
-Running a Workflow
--------------------
-Run the plan_dax.sh script.
+## Transferring Data to HCC Server (Need to do only once)
+1. This workflow can only be run on the HCC server, so ensure the entire project (plant-phenotyping) is in your work directory on the HCC server.
+2. Ensure that the plant dataset is on the HCC server and is accessible by you.
+    * Data transfer instructions are below for moving local information to the HCC servers:
+        * Mac/Linux (under File Transferring With HCC Supercomputers):<https://hcc.unl.edu/docs/connecting/for_maclinux_users/>
+        * Windows (under File Transferring With HCC Supercomputers): <https://hcc.unl.edu/docs/connecting/for_windows_users/>
 
-Here is the current workflow diagram (file names are used as examples):
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/Workflow%20Diagram.png)
+## Modifying Workflow Paths to Work with File Structure (Need to do only once)
+1. Modify file\_paths\_config.py located in the zip folder:
+    * Change the data value to reference all of the dataset’s plant folders.
+    * Example (numpy arrays):
+    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data/*',`
+    ` 'model': 'fold3_model_4_300_0.0005.h5'`
+    * data needs to be in this structure for workflow to work for hyperspectral images:
+        * data (does not have to be called data)
+            * [plant folder name]
+            * [plant folder name]
+            * ....
+
+## Changing Shell Scripts to Executables (Need to do only once)
+1. We will need to change the permissions for our scripts in the pics2predictions folder so we need to run the following commands in the pics2predictions folder:
+    * `chmod +x generate_dax.sh` to make generate_dax.sh an executable.
+    * `chmod +x plan_dax.sh` to make plan_dax.sh an executable.
+    * `chmod +x preprocess.sh` to make preprocess.sh an executable.  
+
+## Running Workflow
+1. Run the command:
+`./generate_dax.sh [dax file name].dax`
+(Where [dax file name] is the name you want for the dax file to generate the dax file
+2. Then the command :
+`./plan_dax.sh [dax file name].dax`
+to plan the dax and run the workflow
+3. Use `pegasus-status -l [copy this from the output]` to see the status. (optional)
+Example: `pegasus-status -l /work/csesd/johnsuzh/zip/submit/johnsuzh/pegasus/split/run0010`
+This is to show the status of the workflow.
+3. Use `pegasus-remove [copy this from the output]` to remove the current running workflow. (optional)
+Example:`pegasus-remove /work/csesd/johnsuzh/zip/submit/johnsuzh/pegasus/split/run0010`
+This is to remove the workflow from the queue.
+4. Use `pegasus-analyzer [copy this from the output]` for a failing workflow to see the error message (optional)
+Example:`pegasus-analyzer /work/csesd/johnsuzh/zip/submit/johnsuzh/pegasus/split/run0010`
+This is to show the error message of the workflow if there was any error.
+5. When it’s done, the status should be 100% in the %DONE column (use `pegasus-status` command). And you can see the output in the output folder.
+6. The final outputs to the current workflow should be:
+  * Each [plant folder name].zip
+7. When you want to run the workflow again, make sure to remove the contents in the output folder.
+
+## Example of using this Workflow
+1. In this example, the plant-phenotyping and the dataset are all on the HCC sever. Let us go step by step of using this workflow.
+2. We are currently in the workflow directory, zip, you can see all of the files of the workflow directory with `ls`
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/view_workflow_directory.png)
+3. Let us check the files that need to be configured to properly run the workflow. Here is the file_paths_config.py file that contains the paths to the dataset's plant folders. Here is shows the path to my test dataset.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/file_paths_config.png)
+4. We now need to convert all of the shell scripts into executables. We do this with `chmod +x [file name]` as shown below. The files are now in green after `ls`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/chmod.png)
+5. Now we can generate the dax with `./generate_dax [dax file name].dax` we use test.dax as a test. This now shows test.dax in the directory.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/generate_dax.png)
+6. We can use plan_dax.sh to plan the dax file and run the workflow. Let us run `./plan_dax [dax file name].dax`.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/plan_dax.png)
+7. We can check the status with the line that was outputted from the plan dax command (`pegasus status -l ...`). The staging in jobs have just begun.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_start.png)
+8. After a few minutes with the test dataset, we can see that the workflow is done with (`pegasus status -l ...`).
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/status_done.png)
+9. Let us go into our output directory and check the output with `ls`. We can see it outputted several predict images, one measurement .csv, and one growth .png.
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/output.png)
+10. This concludes running the example of running this workflow.
