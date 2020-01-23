@@ -62,7 +62,7 @@ def unzip(plant_ID, date, image_type):
             print("please input correct date or plant name")
 
         else:
-            print("successfully reconstructed!")
+            print("successfully extracted "+image_type+" images from "+ folder_name+".zip")
 
 
 def preprocess(plant_ID, date):
