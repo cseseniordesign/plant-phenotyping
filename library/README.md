@@ -12,5 +12,8 @@
 
 ## Running the library
 1. import the module as a Python package
-* from library import tools
+* `from library import tools`
+* `tools.info([plant name], [date])` 
+* `tools.unzip([plant name], [date], [image type])`
+* `tools.preprocess([plant name], [date])`
 
