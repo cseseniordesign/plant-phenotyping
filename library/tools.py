@@ -99,7 +99,7 @@ def preprocess(plant_ID, date):
     img_array = np.stack(img_arrs, axis=2)
     print(img_array.shape)
     np.save(out_fn, img_array)
-    print("Done!")
+    print("numpy array successfully reconstructed!")
 
 
 
