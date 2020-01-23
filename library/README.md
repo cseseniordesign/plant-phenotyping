@@ -37,7 +37,7 @@
 * `python3 -m library.tools preprocess -n JS39-65 -d 2018-04-11`
 
 ## Demonstration
-
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/library_demo.png)
 
 
 
