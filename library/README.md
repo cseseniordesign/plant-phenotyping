@@ -5,18 +5,18 @@
 * opencv
 
 ## Functionality
-* info(plant_ID, date)
-** input: plant_ID, date
-** output: print types of images that are available
-** example: ```tools.info("JS39-65", "2018-04-11")```
-* unzip(plant_ID, date, image_type):
-** input: plant_ID, date, image_type
-** output: the folder of images that match plant ID, date, and image type.
-** example: ```tools.unzip("JS39-65", "2018-04-11", "Nir")```
-* preprocess(plant_ID, date):
-** input: plant_ID, date
-** output: numpy arrays of Hyperspectral images
-** example: ```tools.preprocess("JS39-65", "2018-04-11")```
+1. info(plant_ID, date)
+* input: plant_ID, date
+* output: print types of images that are available
+* example: ```tools.info("JS39-65", "2018-04-11")```
+2. unzip(plant_ID, date, image_type):
+* input: plant_ID, date, image_type
+* output: the folder of images that match plant ID, date, and image type.
+* example: ```tools.unzip("JS39-65", "2018-04-11", "Nir")```
+3. preprocess(plant_ID, date):
+* input: plant_ID, date
+* output: numpy arrays of Hyperspectral images
+* example: ```tools.preprocess("JS39-65", "2018-04-11")```
 
 
 
