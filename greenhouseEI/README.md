@@ -37,7 +37,7 @@
 * `python3 -m greenhouseEI.tools preprocess -n JS39-65 -d 2018-04-11 -p /Users/john/PycharmProjects/Library_SD`
 
 ## Demonstration
-![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/library_demo.png)
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/greenhouseEI_guide.png)
 
 
 
