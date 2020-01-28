@@ -34,7 +34,7 @@
 3. running the module in terminal 
 * `python3 -m greenhouseEI.tools info -n JS39-65 -d 2018-04-11 -p /Users/john/PycharmProjects/Library_SD/output`
 * `python3 -m greenhouseEI.tools unzip -n JS39-65 -d 2018-04-11 -t Hyp -p /Users/john/PycharmProjects/Library_SD/output`
-* `python3 -m greenhouseEI.tools preprocess -n JS39-65 -d 2018-04-11 -p /Users/john/PycharmProjects/Library_SD/output`
+* `python3 -m greenhouseEI.tools preprocess -n JS39-65 -d 2018-04-11 -p /Users/john/PycharmProjects/Library_SD`
 
 ## Demonstration
 ![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/library_demo.png)
