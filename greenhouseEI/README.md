@@ -28,9 +28,9 @@
 * Hyperspectral images should be reconstructed first, before running the "preprocess" to produce the numpy array
 2. import the module as a Python package
 * `from greenhouseEI import tools`
-* `tools.info([plant_ID], [date])` 
-* `tools.unzip([plant name], [date], [image type])`
-* `tools.preprocess([plant name], [date])`
+* `tools.info([plant_ID], [date], [path])` 
+* `tools.unzip([plant name], [date], [image type], [path])`
+* `tools.preprocess([plant name], [date], [path])`
 3. running the module in terminal 
 * `python3 -m greenhouseEI.tools info -n JS39-65 -d 2018-04-11 -p /Users/john/PycharmProjects/Library_SD/output`
 * `python3 -m greenhouseEI.tools unzip -n JS39-65 -d 2018-04-11 -t Hyp -p /Users/john/PycharmProjects/Library_SD/output`
