@@ -1,3 +1,0 @@
-Camera label: Fluo_SV_0
-MM pro pixel X: 1.25688099861145
-MM pro pixel Y: 1.08695697784424

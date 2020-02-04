@@ -1,3 +1,0 @@
-Camera label: Nir_TV_90
-MM pro pixel X: 3.73015904426575
-MM pro pixel Y: 3.73015904426575
