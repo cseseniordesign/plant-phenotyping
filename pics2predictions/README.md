@@ -123,3 +123,6 @@ This is to show the error message of the workflow if there was any error.
 13. Here is an example of the growth .png.
 ![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/growth.png)
 14. This concludes running the example of running this workflow.
+
+## Workflow Diagram
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/predict_workflow.png)

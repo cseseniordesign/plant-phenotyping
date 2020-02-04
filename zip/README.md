@@ -66,3 +66,6 @@ This is to show the error message of the workflow if there was any error.
 6. After a few minutes with the test dataset, we can see that the workflow is done with (`pegasus status -l ...`). Let us go into our output directory and check the output with `ls`. We can see it outputted several zip files, each one representing a folder in the dataset.
 ![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_output.png)
 7. This concludes running the example of running this workflow.
+
+## Workflow Diagram
+![](https://github.com/cseseniordesign/plant-phenotyping/blob/master/illustrations/zip_workflow.png)
