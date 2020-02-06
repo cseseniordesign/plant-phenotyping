@@ -102,13 +102,9 @@ def preprocess(plant_ID, date, input_path):
 
 # convert zip file of the Hyp images to numpy array
 def zip2np(plant_ID, date, input_path):
+    path = os.getcwd()
     unzip(plant_ID, date, "Hyp", input_path)
-    if input_path[-1] == '/':
-        last_str = input_path.split('/')[-2]
-    elif input_path[-1] != '/':
-        last_str = input_path.split('/')[-1]
-    input_path = input_path.rpartition(last_str)[0]
-    preprocess(plant_ID, date, input_path)
+    preprocess(plant_ID, date, path)
 
 
 def main():
