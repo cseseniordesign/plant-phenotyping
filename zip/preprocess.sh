@@ -6,6 +6,6 @@ module use /util/opt/hcc-modules/Common/
 
 CURRENT=${PWD}
 cd "$1"
-zip -r "$2" "$3"
+zip -r "$2" *
 mv "$2.zip" $CURRENT/"$2".zip
 cd $CURRENT

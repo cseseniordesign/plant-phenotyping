@@ -23,7 +23,7 @@ dax = ADAG("process")
 dax.metadata("creator", "%s@%s" % (USER, os.uname()[1]))
 dax.metadata("created", time.ctime())
 
-path_to_data = paths.file_paths['data'].replace('*','')
+#path_to_data = paths.file_paths['data'].replace('*','')
 path_list = glob(paths.file_paths['data'])
 path_list_index = paths.file_paths['data'].split('/').index('*')
 
@@ -31,7 +31,7 @@ for path in sorted(path_list):
 	plant_folder_name = path.split('/')[path_list_index]
 	preprocess = Job("zip")
 	zip_file_name = plant_folder_name + ".zip"
-	preprocess.addArguments(path_to_data, plant_folder_name,  plant_folder_name)
+	preprocess.addArguments(path, plant_folder_name)
 	zip_file = File(zip_file_name)
 	preprocess.uses(zip_file, link=Link.OUTPUT, transfer=True, register=False)
 	dax.addJob(preprocess)
