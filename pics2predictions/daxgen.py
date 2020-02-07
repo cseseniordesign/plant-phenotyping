@@ -25,6 +25,7 @@ dax.metadata("created", time.ctime())
 
 plant_ids = set()
 path_list = glob(paths.file_paths['data'])
+path_to_data = paths.file_paths['data'].replace("*","")
 path_list_index = paths.file_paths['data'].split('/').index('*')
 current_dir = os.getcwd()
 plant_phenotyping_index = current_dir.split('/').index('plant-phenotyping')
@@ -38,16 +39,19 @@ model_file = File(model)
 
 for path in sorted(path_list):
 	joined_path = "\\\"%s\\\"" % path
-	plant_folder_name = path.split('/')[path_list_index]
-	plant_folder_name = plant_folder_name.replace(' ','_')
+	plant_folder_name = path.split("/")[path_list_index]
+	plant_folder_name = plant_folder_name.replace(" ","_")
 	plant_name = plant_folder_name.split("_")[2]
 	date = plant_folder_name.split("_")[3]
 	npy_name = plant_name + "_" + date
 	preprocess = Job("python3")
-	preprocess.addArguments("-m", "greenhouseEI.tools","hyp2arr", "zip2np", "-n", "plant_name", "-d", "date", "-p", "path")
+	preprocess.addArguments("-m", "greenhouseEI.tools", "zip2np", "-n", plant_name, "-d", date, "-p", path_to_data)
 	dax.addJob(preprocess)
 	nparr = File("%s.npy" % npy_name)
-	preprocess.uses(nparr, link=Link.OUTPUT, transfer=False, register=True)
+	output = File("output.txt")
+	preprocess.uses(nparr, link=Link.OUTPUT, transfer=True, register=True)
+	preprocess.uses(output, link=Link.OUTPUT, transfer=True, register=True)
+	preprocess.setStdout(output)
 	prediction = File("%s.%s.prd.png" % (model_str, npy_name))
 	predict = Job("python3")
 	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, nparr)

@@ -7,7 +7,7 @@ module use /util/opt/hcc-modules/Common/
 module load anaconda
 conda activate /home/csesd/pnnguyen/.conda/envs/sd
 
-export PYTHONPATH=/work/csesd/pnnguyen/run:$PYTHONPATH
+export PYTHONPATH=/work/csesd/pnnguyen/run:/work/csesd/pnnguyen/plant-phenotyping:$PYTHONPATH
 python3 "$@"
 
 conda deactivate

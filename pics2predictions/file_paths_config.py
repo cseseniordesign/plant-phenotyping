@@ -19,7 +19,7 @@
 # Example of data value for hyperspectral images (Plant Folders in test_data_hyp): 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/'
 # Example of data value for numpy arrays (.npy in test_data_npy): 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy/*'
 
-file_paths = {'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy_big/*',
+file_paths = {'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data/*',
               'model': 'fold3_model_4_300_0.0005.h5'
 }
 
