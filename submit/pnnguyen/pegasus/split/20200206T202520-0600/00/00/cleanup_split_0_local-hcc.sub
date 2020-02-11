@@ -1,0 +1,39 @@
+######################################################################
+# PEGASUS WMS GENERATED SUBMIT FILE
+# DAG : split, Index = 0, Count = 1
+# SUBMIT FILE NAME : cleanup_split_0_local-hcc.sub
+######################################################################
+stream_error  = false
+stream_output = false
+environment = "CONDOR_JOBID=$(cluster).$(process) PEGASUS_WF_UUID=78a8c959-651f-476b-b2ff-86f753ab1c88 PEGASUS_WF_LABEL=split PEGASUS_DAG_JOB_ID=cleanup_split_0_local-hcc PEGASUS_SITE=local"
+arguments = " -n pegasus::cleanup -N null -i - -R local  -L split -T 2020-02-06T20:24:34-06:00 /usr/bin/../bin/pegasus-transfer "
+error = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600//00/00/cleanup_split_0_local-hcc.err
+executable = /usr/bin/../bin/pegasus-kickstart
+input = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600//00/00/cleanup_split_0_local-hcc.in
+log = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600/split-0.log
+notification = NEVER
+output = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600//00/00/cleanup_split_0_local-hcc.out
+periodic_release = False
+periodic_remove = (JobStatus == 5) && ((CurrentTime - EnteredCurrentStatus) > 1800)
+priority = 1000
+submit_event_user_notes = pool:local
+transfer_executable = false
+universe = local
++pegasus_generator = "Pegasus"
++pegasus_root_wf_uuid = "78a8c959-651f-476b-b2ff-86f753ab1c88"
++pegasus_wf_uuid = "78a8c959-651f-476b-b2ff-86f753ab1c88"
++pegasus_version = "4.9.2dev"
++pegasus_wf_name = "split-0"
++pegasus_wf_time = "20200206T202520-0600"
++pegasus_wf_xformation = "pegasus::cleanup"
++pegasus_wf_dax_job_id = "null"
++pegasus_wf_dag_job_id = "cleanup_split_0_local-hcc"
++pegasus_job_class = 8
++pegasus_site = "local"
++pegasus_job_runtime = 0
++pegasus_cores = 1
++pegasus_cluster_size = 1
+queue
+######################################################################
+# END OF SUBMIT FILE
+######################################################################

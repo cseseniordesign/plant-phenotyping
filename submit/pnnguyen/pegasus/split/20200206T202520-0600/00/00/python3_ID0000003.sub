@@ -1,0 +1,43 @@
+######################################################################
+# PEGASUS WMS GENERATED SUBMIT FILE
+# DAG : split, Index = 0, Count = 1
+# SUBMIT FILE NAME : python3_ID0000003.sub
+######################################################################
+stream_error  = false
+stream_output = false
+environment = ""
++remote_cerequirements = JOBNAME=="python3ID000000" && PASSENV==1 && PRIORITY==10
++remote_environment = "PEGASUS_HOME=/usr CONDOR_JOBID=$(cluster).$(process) PEGASUS_WF_UUID=78a8c959-651f-476b-b2ff-86f753ab1c88 PEGASUS_WF_LABEL=split PEGASUS_DAG_JOB_ID=python3_ID0000003 PEGASUS_SITE=local-hcc PEGASUS_SCRATCH_DIR=/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/scratch/pnnguyen/pegasus/split/20200206T202520-0600 PEGASUS_QUEUE=batch,tmp_anvil"
+arguments =  -n python3 -N ID0000003 -o output.txt -R local-hcc  -w /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/scratch/pnnguyen/pegasus/split/20200206T202520-0600  -s output.txt=output.txt -s 49-635-js87-124_2018-05-13.npy=49-635-js87-124_2018-05-13.npy -L split -T 2020-02-06T20:24:34-06:00 /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/run_python.sh -m greenhouseEI.tools zip2np -n 49-635-js87-124 -d 2018-05-13 -p /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data/
+batch_queue = batch,tmp_anvil
+error = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600//00/00/python3_ID0000003.err
+executable = /usr/bin/pegasus-kickstart
+grid_resource = batch slurm
+log = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600/split-0.log
+notification = NEVER
+output = /work/csesd/pnnguyen/plant-phenotyping/pics2predictions/submit/pnnguyen/pegasus/split/20200206T202520-0600//00/00/python3_ID0000003.out
+periodic_release = False
+periodic_remove = (JobStatus == 5) && ((CurrentTime - EnteredCurrentStatus) > 1800)
+priority = 10
+request_memory = ifthenelse(isundefined(DAGNodeRetry) || DAGNodeRetry == 0, 4000, 6000)
+submit_event_user_notes = pool:local-hcc
+transfer_executable = false
+universe = grid
++pegasus_generator = "Pegasus"
++pegasus_root_wf_uuid = "78a8c959-651f-476b-b2ff-86f753ab1c88"
++pegasus_wf_uuid = "78a8c959-651f-476b-b2ff-86f753ab1c88"
++pegasus_version = "4.9.2dev"
++pegasus_wf_name = "split-0"
++pegasus_wf_time = "20200206T202520-0600"
++pegasus_wf_xformation = "python3"
++pegasus_wf_dax_job_id = "ID0000003"
++pegasus_wf_dag_job_id = "python3_ID0000003"
++pegasus_job_class = 1
++pegasus_site = "local-hcc"
++pegasus_job_runtime = 0
++pegasus_cores = 1
++pegasus_cluster_size = 1
+queue
+######################################################################
+# END OF SUBMIT FILE
+######################################################################

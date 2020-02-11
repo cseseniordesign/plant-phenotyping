@@ -1,0 +1,31 @@
+{
+  "root_workflow_uuid": "78a8c959-651f-476b-b2ff-86f753ab1c88",
+  "workflow_uuid": "78a8c959-651f-476b-b2ff-86f753ab1c88",
+  "wf_metadata": {
+    "dax.api": "python",
+    "creator": "pnnguyen@login.crane.hcc.unl.edu",
+    "created": "Thu Feb  6 20:24:34 2020"
+  },
+  "graph": {
+    "jobs": {
+      "cleanup_split_0_local-hcc": {},
+      "python3_ID0000001": {},
+      "python3_ID0000002": {},
+      "create_dir_split_0_local-hcc": {},
+      "python3_ID0000003": {},
+      "python3_ID0000004": {},
+      "python3_ID0000005": {},
+      "stage_out_local_local-hcc_2_0": {},
+      "python3_ID0000006": {},
+      "stage_out_local_local-hcc_3_0": {},
+      "python3_ID0000007": {},
+      "stage_out_local_local-hcc_0_0": {},
+      "python3_ID0000008": {},
+      "stage_out_local_local-hcc_1_0": {},
+      "stage_in_local_local-hcc_1_0": {},
+      "register_local-hcc_2_0": {},
+      "register_local-hcc_1_0": {},
+      "register_local-hcc_0_0": {}
+    }
+  }
+}

@@ -1,0 +1,12 @@
+Pegasus LIB /usr/lib64/python2.6/site-packages
+Pegasus LIB /usr/lib64/pegasus/externals/python
+Pegasus BIN_DIR /usr/bin
+Pegasus DAGMAN is  /usr/bin/pegasus-dagman
+2020-02-06 20:25:23,396:INFO:pegasus-dagman(138): DAGMAN_COPY_TO_SPOOL is set to false
+
+2020-02-06 20:25:23,400:INFO:pegasus-dagman(98): Launched Dagman with Pid 4099998
+2020-02-06 20:25:23,406:INFO:pegasus-dagman(123): Launched Monitord with Pid 4100000
+2020-02-06 20:40:49,546:INFO:pegasus-dagman(147): pegasus-dagman caught SIGNAL 10
+Executing condor dagman ... 
+2020-02-06 20:41:04,561:INFO:pegasus-dagman(248): Dagman exited with code 2
+2020-02-06 20:41:04,561:INFO:pegasus-dagman(249): Monitord exited with code 0

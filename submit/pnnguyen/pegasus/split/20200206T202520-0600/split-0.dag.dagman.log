@@ -1,0 +1,14 @@
+000 (11001061.000.000) 02/06 20:25:22 Job submitted from host: <129.93.227.113:9619?addrs=129.93.227.113-9619&noUDP&sock=13749_d1bd_3>
+...
+001 (11001061.000.000) 02/06 20:25:23 Job executing on host: <129.93.227.113:9619?addrs=129.93.227.113-9619&noUDP&sock=13749_d1bd_3>
+...
+004 (11001061.000.000) 02/06 20:41:04 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+009 (11001061.000.000) 02/06 20:41:04 Job was aborted by the user.
+	via condor_rm (by user pnnguyen)
+...

@@ -1,0 +1,23 @@
+[
+ { "type": "transfer",
+   "linkage": "output",
+   "lfn": "plant_traits_49-635-js87-124.csv",
+   "id": 1,
+   "src_urls": [
+     { "site_label": "local-hcc", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/scratch/pnnguyen/pegasus/split/20200206T202520-0600/./plant_traits_49-635-js87-124.csv" }
+   ],
+   "dest_urls": [
+     { "site_label": "local", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/output/plant_traits_49-635-js87-124.csv" }
+   ] }
+ ,
+ { "type": "transfer",
+   "linkage": "output",
+   "lfn": "plant_traits_49-281-JS39-65.csv",
+   "id": 2,
+   "src_urls": [
+     { "site_label": "local-hcc", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/scratch/pnnguyen/pegasus/split/20200206T202520-0600/./plant_traits_49-281-JS39-65.csv" }
+   ],
+   "dest_urls": [
+     { "site_label": "local", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/output/plant_traits_49-281-JS39-65.csv" }
+   ] }
+]

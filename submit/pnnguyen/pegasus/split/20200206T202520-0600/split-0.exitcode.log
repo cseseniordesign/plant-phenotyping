@@ -1,0 +1,2 @@
+{"std_err": "", "retry": 0, "std_out": "", "timestamp": "2020-02-06T20:25:33.023880", "name": ".//00/00/create_dir_split_0_local-hcc.out", "exitcode": 0, "app_exitcode": 0}
+{"std_err": "", "retry": 0, "std_out": "", "timestamp": "2020-02-06T20:25:47.828621", "name": ".//00/00/stage_in_local_local-hcc_1_0.out", "exitcode": 0, "app_exitcode": 0}

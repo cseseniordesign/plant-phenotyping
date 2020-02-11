@@ -1,0 +1,13 @@
+[
+ { "type": "transfer",
+   "linkage": "input",
+   "lfn": "fold3_model_4_300_0.0005.h5",
+   "id": 1,
+   "generate_checksum": true,
+   "src_urls": [
+     { "site_label": "local", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/input/fold3_model_4_300_0.0005.h5", "priority": 100 }
+   ],
+   "dest_urls": [
+     { "site_label": "local-hcc", "url": "file:///work/csesd/pnnguyen/plant-phenotyping/pics2predictions/scratch/pnnguyen/pegasus/split/20200206T202520-0600/./fold3_model_4_300_0.0005.h5" }
+   ] }
+]
