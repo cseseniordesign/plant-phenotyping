@@ -36,36 +36,26 @@
 
 ## Modifying Workflow Paths to Work with File Structure (Need to do only once)
 1. Modify file\_paths\_config.py located in the pics2predictions folder:
-    * Change the data value to the file path to the dataset’s Hyp\_SV\_90 folders or the dataset's numpy files.
+    * Change the data value to the file path to the dataset’s zip files.
     * Change the model value to the value of the model you want use to predict the images (also ensure that the file is in the input folder).
-    * Example (hyperspectral images):
-    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_hyp/*/Hyp_SV_90/',`
-    ` 'model': 'fold3_model_4_300_0.0005.h5'`
-    * Example (numpy arrays):
-    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data_npy/*',`
+    * Example:
+    ` 'data': '/work/csesd/pnnguyen/plant-phenotyping/pics2predictions/test_data/*',`
     ` 'model': 'fold3_model_4_300_0.0005.h5'`
     * data needs to be in this structure for workflow to work for hyperspectral images:
         * data (does not have to be called data)
-            * [plant folder name]
-                * Hyp\_SV\_90
-            * [plant folder name]
-                * Hyp\_SV\_90
+            * [plant folder name].zip
+            * [plant folder name].zip
             * ....
-    * Note: There must be just plant folders in the data folder and each plant folder must contain a Hyp\_SV\_90 folder.
-    * data needs to be in this structure for daxgen_npy workflow to work:
-      * data (does not have to be called data)
-        * [numpy name].npy
-        * [numpy name].npy
-        * ...
-
 2. Modify run_python.sh located in the pics2predictions folder:
     1. Change conda activate numpy to `conda activate [path to environment]` (where [path to environment] is the path of the environment you created).
         * Most anaconda paths on the HCC server are either located in $HOME or $WORK. You can check by by typing the command `ls -a` on the command line in either directories and checking if a .conda folder is in the directory.
        * The actual path to your enviroment is of the following pattern. $HOME/.conda/envs/[name of environment] or $WORK/.conda/envs/[name of environment]. ex:
     `conda activate /home/csesd/pnnguyen/.conda/envs/sd`
 
-    2. Change the python path (content after export PYTHONPATH=) to the path to the schnablelab project. ex: (Note schnablelab folder is in the run folder in this example)
-`export PYTHONPATH=/work/csesd/pnnguyen/run:$PYTHONPATH`
+    2. Change the python path (content after export PYTHONPATH=) to the path to the schnablelab project and the greenhouseEI library.
+    Note: In order to include multiple paths for a PYTHONPATH, it must be written in this format:`export PYTHONPATH=[path_1]:[path_2]:$PYTHONPATH`
+    ex: (Note schnablelab folder is in the run folder in this example)
+`export PYTHONPATH=/work/csesd/pnnguyen/run:/work/csesd/pnnguyen/run/greenhouseEI:$PYTHONPATH`
 
 ## Changing Shell Scripts to Executables (Need to do only once)
 1. We will need to change the permissions for our scripts in the pics2predictions folder so we need to run the following commands in the pics2predictions folder:
@@ -94,7 +84,7 @@ This is to show the error message of the workflow if there was any error.
   * Prediction images (.png)
   * Trait extraction data (.csv)
   * Graph images that plotted points in .csv(s) (.png)
-7. When you want to run the workflow again, make sure to remove the contents in the output folder.
+7. When you want to run the workflow again, make sure to remove the contents in the output folder and clean up the submit and scratch directory.
 
 ## Example of using this Workflow
 1. In this example, the plant-phenotyping and schnablelab repository are all on the HCC sever. Also, the anaconda environment has already been created with all of the dependencies of the project. Let us go step by step of using this workflow.
