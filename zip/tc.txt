@@ -1,7 +1,6 @@
-#!/bin/bash
-
 tr zip {
-    site local {
+    site local-hcc {
+	profile pegasus "clusters.size" "50" 
        	pfn "file://${PWD}/preprocess.sh"
     }
 }
