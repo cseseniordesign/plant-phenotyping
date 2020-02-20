@@ -21,6 +21,7 @@ pegasus-plan --conf pegasus.properties \
     --output-dir $DIR/output \
     --cleanup leaf \
     --force \
+    --cluster horizontal \
     --sites local-hcc,local \
     --output-site local \
     --submit

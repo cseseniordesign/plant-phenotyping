@@ -1,5 +1,8 @@
+#!/bin/bash
+
 tr python3 {
     site local-hcc {
+	profile pegasus "clusters.size" "50"
        	pfn "file://${PWD}/run_python.sh"
     }
 }
