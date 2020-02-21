@@ -16,22 +16,40 @@ def info(plant_ID, date, input_path):
         path = input_path
         files = os.listdir(path)
         for file in files:
-            if (plant_ID in file) and (date in file):
+            if plant_ID in file and "zip" in file:
                 file_name = file
                 break
-        with ZipFile(path + '/' + file_name, 'r') as zip:
-            for file in zip.namelist():
-                image_type.add(file.split('/')[1].split("_")[0])
+        # old data structure
+        if "Schnable" in file_name:
+            with ZipFile(path + '/' + file_name, 'r') as zip:
+                for file in zip.namelist():
+                    image_type.add(file.split('/')[1].split("_")[0])
 
-        print("available image types:")
-        for t in image_type:
-            if t in ["Fluo", "IR", "Hyp", "Vis", "Nir"]:
-                print(t)
+            print("available image types:")
+            for t in image_type:
+                if t in ["Fluo", "IR", "Hyp", "Vis", "Nir"]:
+                    print(t)
+            return 1
 
-        return 1
+        # new data structure
+        else:
+            date_formatted = date[:4] + date[5:7] + date[8:10]
+            with ZipFile(path + '/' + file_name, 'r') as zip:
+                for file in zip.namelist():
+                    if date_formatted in file and "RAW" not in file:
+                        image_type.add(file.split('/')[-1].split("__")[2])
+
+            print("available image types:")
+            for t in image_type:
+                if t in ["Fluo", "IR", "Hyp", "Vis", "Nir"]:
+                    print(t)
+            return 1
+
     except BaseException:
         print("please input correct date or plant name")
         return 0
+
+
 
 # unzip the folder of images that matches specified plant ID, date, and image type
 def unzip(plant_ID, date, image_type, input_path):
@@ -41,22 +59,40 @@ def unzip(plant_ID, date, image_type, input_path):
     else:
         path = input_path
         try:
-            i = 0
             files = os.listdir(path)
             for file in files:
-                if (plant_ID in file) and (date in file):
+                if plant_ID in file and "zip" in file:
                     file_name = file
                     break
+            # old data structure
+            if "Schnable" in file_name:
+                i = 0
+                folder_name = file_name[0:-4]
 
-            folder_name = file_name[0:-4]
+                with ZipFile(path + '/' + file_name, 'r') as zip:
+                    for file in zip.namelist():
+                        if file.startswith(folder_name + '/' + image_type):
+                            zip.extract(file)
+                            i += 1
+                if i == 0:
+                    print("image type not available")
+                    return 0
 
-            with ZipFile(path + '/' + file_name, 'r') as zip:
-                for file in zip.namelist():
-                    if file.startswith(folder_name + '/' + image_type):
-                        zip.extract(file)
-                        i += 1
-            if i == 0:
-                print("image type not available")
+            # new data structure
+            else:
+                i = 0
+                folder_name = file_name[0:-4]
+
+                date_formatted = date[:4] + date[5:7] + date[8:10]
+                with ZipFile(path + '/' + file_name, 'r') as zip:
+                    for file in zip.namelist():
+                        if date_formatted in file:
+                            if image_type in file and "RAW" not in file:
+                                zip.extract(file)
+                                i += 1
+                if i == 0:
+                    print("image type not available")
+                    return 0
 
         except BaseException:
             print("please input correct date or plant name")
@@ -66,6 +102,8 @@ def unzip(plant_ID, date, image_type, input_path):
             print("successfully extracted " + image_type + " images from " + folder_name + ".zip")
             return 1
 
+
+
 # output numpy arrays of Hyperspectral images
 def preprocess(plant_ID, date, input_path):
     flag = 0
@@ -73,41 +111,88 @@ def preprocess(plant_ID, date, input_path):
     try:
         files = os.listdir(path)
         for file in files:
-            if (plant_ID in file) and (date in file) and "npy" not in file and plant_ID is not "" and date is not "":
-                hyp_dir_name = file
-                flag = 1
-                break
+            if "Schnable" in file:
+                if (plant_ID in file) and (date in file) and "npy" not in file and plant_ID is not "" and date is not "":
+                    hyp_dir_name = file
+                    flag = 1
+                    break
+            else:
+                if (plant_ID in file) and "npy" not in file and plant_ID is not "" and date is not "":
+                    hyp_dir_name = file
+                    flag2 = 0
+                    folders = os.listdir(path + '/' + hyp_dir_name)
+                    date_formatted = date[:4] + date[5:7] + date[8:10]
+                    for folder in folders:
+                        if date_formatted in folder:
+                            flag = 2
+                            flag2 = 1
+                            break
+
+                    if flag2 == 1:
+                        break
+
         if flag == 0:
             print('please input correct date or plant name')
             return 0
-            sys.exit()
-        output_name = hyp_dir_name.split("_")[2] + "_" + hyp_dir_name.split("_")[3]
-        hyp_dir = hyp_dir_name
-        out_fn = output_name
 
-        discard_imgs = ['0_0_0.png', '1_0_0.png']
-        dir_path = Path(hyp_dir)
-        dir_path = dir_path / 'Hyp_SV_90'
-        if not dir_path.exists():
-            sys.exit('Hyp images are compressed, please unzip it first')
-            return 0
-        imgs = list(dir_path.glob('*.png'))
-        imgs = sorted(imgs, key=lambda x: int(x.name.split('_')[0]))
-        num_imgs = len(imgs)
-        print('%s images found.' % num_imgs)
-        img_arrs = []
-        for i in imgs:
-            if not i.name in discard_imgs:
+        # old data structure
+        if flag == 1:
+            output_name = hyp_dir_name.split("_")[2] + "_" + hyp_dir_name.split("_")[3]
+            hyp_dir = hyp_dir_name
+            out_fn = output_name
+
+            discard_imgs = ['0_0_0.png', '1_0_0.png']
+            dir_path = Path(hyp_dir)
+            dir_path = dir_path / 'Hyp_SV_90'
+            if not dir_path.exists():
+                sys.exit('Hyp images are compressed, please unzip it first')
+                return 0
+            imgs = list(dir_path.glob('*.png'))
+            imgs = sorted(imgs, key=lambda x: int(x.name.split('_')[0]))
+            num_imgs = len(imgs)
+            print('%s images found.' % num_imgs)
+            img_arrs = []
+            for i in imgs:
+                if not i.name in discard_imgs:
+                    arr = cv2.imread(str(i), cv2.IMREAD_GRAYSCALE)
+                    img_arrs.append(arr)
+            img_array = np.stack(img_arrs, axis=2)
+            print(img_array.shape)
+            np.save(out_fn, img_array)
+            print("numpy array successfully reconstructed!")
+            return 1
+
+        # new data structure
+        if flag == 2:
+            output_name = hyp_dir_name + "_" + date
+            hyp_dir = hyp_dir_name
+            out_fn = output_name
+            dir_path = Path(hyp_dir)
+            dir_path = dir_path / date_formatted
+            if not dir_path.exists():
+                sys.exit('Hyp images are compressed, please unzip it first')
+                return 0
+            imgs = list(dir_path.glob('*.png'))
+            imgs = sorted(imgs, key=lambda x: x.name.split('_')[-1])
+            num_imgs = len(imgs)
+            print('%s images found.' % num_imgs)
+            img_arrs = []
+            for i in imgs:
                 arr = cv2.imread(str(i), cv2.IMREAD_GRAYSCALE)
-                img_arrs.append(arr)
-        img_array = np.stack(img_arrs, axis=2)
-        print(img_array.shape)
-        np.save(out_fn, img_array)
-        print("numpy array successfully reconstructed!")
-        return 1
+                if arr.shape != (480, 640):
+                    img_arrs.append(arr)
+            img_array = np.stack(img_arrs, axis=2)
+            print(img_array.shape)
+            np.save(out_fn, img_array)
+            print("numpy array successfully reconstructed!")
+            return 1
+
     except BaseException:
         print("please input correct path")
         return 0
+
+
+
 # convert zip file of the Hyp images to numpy array
 def zip2np(plant_ID, date, input_path):
     path = os.getcwd()
