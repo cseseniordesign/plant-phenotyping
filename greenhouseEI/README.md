@@ -26,7 +26,7 @@
 
 ## Running the library
 1. Warnings
-* the plant_ID should be in a format like "JS39-65", the date should be in a format like "2018-04-11"
+* There are two types of dataset. The folder name of the old dataset contains "Schnable". Such as "4-9-18_Schnable_49-281-JS39-65_2018-04-11_12-09-35_9968800.zip". The plant_ID of the old dataset should be in a format like "JS39-65", the date should be in a format like "2018-04-11". In the new dataset. The folder name of the new dataset is like "71-001-Sesame-D-1.zip". The plant_ID of the new dataset should be in a format like "71-001-Sesame-D-1", the date should be in a format like "2019-07-03".
 * the possible image types are Hyp, Nir, Vis, Fluo, IR
 * Hyperspectral images should be reconstructed first, before running the "preprocess" to produce the numpy array
 2. import the module as a Python package
