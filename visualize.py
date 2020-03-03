@@ -19,7 +19,7 @@ with open(csv_path) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
-        if(len(row) < 1):
+        if(len(row) < 6):
             continue
         if line_count == 0:
             traits = row

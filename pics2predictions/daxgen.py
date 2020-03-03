@@ -44,13 +44,13 @@ for path in sorted(path_list):
 	plant_name = plant_folder_name.split("_")[2]
 	date = plant_folder_name.split("_")[3]
 	npy_name = plant_name + "_" + date
-	preprocess = Job("python3")
+	preprocess = Job("python_preprocess")
 	preprocess.addArguments("-m", "greenhouseEI.tools", "zip2np", "-n", plant_name, "-d", date, "-p", path_to_data)
 	dax.addJob(preprocess)
 	nparr = File("%s.npy" % npy_name)
-	preprocess.uses(nparr, link=Link.OUTPUT, transfer=True, register=True)
+	preprocess.uses(nparr, link=Link.OUTPUT, transfer=False, register=True)
 	prediction = File("%s.%s.prd.png" % (model_str, npy_name))
-	predict = Job("python3")
+	predict = Job("python_predict")
 	predict.addArguments("-m", "schnablelab.CNN.Predict_snn","Predict", model_file, nparr)
 	predict.uses(model, link=Link.INPUT)
 	predict.uses(nparr, link=Link.INPUT)
@@ -60,7 +60,7 @@ for path in sorted(path_list):
 	dax.depends(predict, preprocess)
 	if plant_name not in plant_ids:
 		plant_ids.add(plant_name)
-		measure = Job("python3")
+		measure = Job("python_measure")
 		measure.uses(prediction, link=Link.INPUT)
 		plant_extract_jobs[plant_name] = measure
 		plant_predict_jobs[plant_name] = [predict]
@@ -80,10 +80,11 @@ for plant_name in plant_extract_jobs:
 	dax.addJob(job)
 	graphs_name = plant_name + "_growth_curve.png"
 	graphs = File(graphs_name)
-	visualize = Job("python3")
+	visualize = Job("python_visualize")
 	visualize.addArguments(plant_phenotyping_path + "/visualize.py", "-p", csv)
 	visualize.uses(csv, link=Link.INPUT)
 	visualize.uses(graphs, link=Link.OUTPUT, transfer=True, register=False)
+	visualize.setStdout(graphs)
 	dax.addJob(visualize)
 	dax.depends(child=visualize, parent=job)
 	for predict_job in plant_predict_jobs[plant_name]:
